@@ -1,5 +1,5 @@
 import ReviewsMarquee from "../components/ReviewsMarquee";
-import FAQ from "./FAQ";
+import FAQ from "./Faq";
 
 
 

@@ -14,7 +14,7 @@ function Footer() {
     { name: "Why Choose", path: "/" },
     { name: "How it work", path: "/how-its-work" },
     { name: "Home Internet", path: "/" },
-    { name: "FAQ", path: "/FAQ" },
+    { name: "FAQ", path: "/Faq" },
     { name: "Store Locater", path: "/StoreLocator" },
     { name: "Contact Us", path: "/Contact" },
   ];
