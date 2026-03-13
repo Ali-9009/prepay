@@ -21,7 +21,7 @@ const filterTabs = [
 
 // ── Carrier Logos ──
 const carriers = [
-    { id: "att", name: "AT&T", bg: "#00A8E0", color: "#fff", logo: "/images/at&t.png", category: "topup" },
+    { id: "att", name: "AT&T", bg: "#00A8E0", color: "#fff", logo: "/images/at-t.png", category: "topup" },
     { id: "verizon", name: "Verizon", bg: "#CD040B", color: "#fff", logo: "/images/verizon.png", category: "topup" },
     { id: "boost", name: "Boost Mobile", bg: "#F7941D", color: "#fff", logo: "/images/boost.png", category: "topup" },
     { id: "tmobile", name: "T-Mobile", bg: "#E20074", color: "#fff", logo: "/images/t-mobile.png", category: "topup" },

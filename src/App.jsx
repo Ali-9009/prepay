@@ -7,6 +7,15 @@ import StoreLocations from "./pages/StoreLocator";
 import FAQ from "./pages/Faq";
 import Contact from "./pages/Contact";
 import NavPage from "./pages/NavPage";
+import DetailPage from "./pages/DetailPage";
+import PrivacyPolicy from "./pages/policies/PrivacyPolicy";
+import RefundPolicy from "./pages/policies/RefundPolicy";
+import TermsConditions from "./pages/policies/TermsConditions";
+import DMCA from "./pages/policies/DMCA";
+import SignIn from "./pages/auth/SignIn";
+import ActivateFlow from "./pages/Activation/ActivationFlow";
+import TopUp from "./pages/TopUp/TopUp";
+import ActivateStep from "./pages/TopUp/ActivateStep";
 
 
 const router = createBrowserRouter([
@@ -18,7 +27,16 @@ const router = createBrowserRouter([
       { path: "/StoreLocator", element: <StoreLocations /> },
       { path: "/Faq", element: <FAQ /> },
       { path: "/Contact", element: <Contact /> },
-      { path: "/NavPage", element: <NavPage /> },
+      { path: "/:category", element: <NavPage /> },
+      { path: "/DetailPage", element: <DetailPage /> },
+      { path: "/PrivacyPolicy", element: <PrivacyPolicy /> },
+      { path: "/RefundPolicy", element: <RefundPolicy /> },
+      { path: "/TermsConditions", element: <TermsConditions /> },
+      { path: "/DMCA", element: <DMCA /> },
+      { path: "/SignIn", element: <SignIn /> },
+      { path: "/ActivateFlow", element: <ActivateFlow /> },
+      { path: "/TopUp", element: <TopUp /> },
+      { path: "/ActivateStep", element: <ActivateStep /> },
     ],
   },
 ]);

@@ -3,11 +3,11 @@ import { NavLink } from "react-router-dom";
 import { Smartphone, Mail, Menu, X, ChevronDown, Globe } from "lucide-react";
 
 const navLinks = [
-  { label: "eSim Activation's", to: "/NavPage" },
-  { label: "Mobile Top-up", to: "/mobile-topup" },
+  { label: "eSim Activation's", to: "/#" },
+  { label: "Mobile Top-up", to: "/TopUp" },
   { label: "Entertainment", to: "/entertainment" },
   { label: "Gaming", to: "/gaming" },
-  { label: "Payment Cards", to: "/payment-cards" },
+  { label: "Payment Cards", to: "/payment" },
   { label: "Shopping", to: "/shopping" },
 ];
 
@@ -73,7 +73,7 @@ export default function Header() {
         {/* Desktop Right Controls */}
         <div className="hidden lg:flex items-center gap-3 ">
           <NavLink
-            to="/login"
+              to="/SignIn"
             className="bg-[#111] text-white rounded-full px-4 py-2 text-sm no-underline hover:bg-[#333] transition-colors "
           >
             Login Here

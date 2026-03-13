@@ -2,21 +2,22 @@ import { Facebook, Instagram, Mail, Phone, Twitter } from "lucide-react";
 import { Link } from "react-router-dom";
 
 function Footer() {
-  // ── Footer Links ──
-  const quickLinks = [
-    "Privacy Policy",
-    "Refunds",
-    "Terms / Conditions",
-    "DMCA",
-    "Unsubscribe Autopay",
-  ];
+
   const resources = [
     { name: "Why Choose", path: "/" },
     { name: "How it work", path: "/how-its-work" },
-    { name: "Home Internet", path: "/" },
+    { name: "Store Locator", path: "/StoreLocator" },
+    { name: "Start Activation journey", path: "/" },
     { name: "FAQ", path: "/Faq" },
-    { name: "Store Locater", path: "/StoreLocator" },
     { name: "Contact Us", path: "/Contact" },
+  ];
+
+  const Terms = [
+    { name: "Privacy Policy", path: "/PrivacyPolicy" },
+    { name: "Refunds", path: "/RefundPolicy" },
+    { name: "Terms / Conditions", path: "/TermsConditions" },
+    { name: "DMCA", path: "/DMCA" },
+    { name: "Unsubscribe Autopay", path: "/" },
   ];
 
   
@@ -55,28 +56,28 @@ function Footer() {
           </div>
         </div>
 
-        {/* Col 2 - Quick Links */}
+        {/* Col 3 - Resources */}
         <div className="pl-10">
-          <h4 className="text-(--primary-color) font-bold mb-4">Quick Links</h4>
+          <h4 className="text-(--primary-color) font-bold  mb-4">About</h4>
           <ul className="flex flex-col gap-1">
-            {quickLinks.map((link) => (
-              <li key={link}>
-                <a
-                  href="#"
+            {resources.map((item) => (
+              <li key={item.name}>
+                <Link
+                  to={item.path}
                   className="text-[#111] text-sm hover:text-(--primary-color) transition-colors no-underline"
                 >
-                  {link}
-                </a>
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>
         </div>
 
-        {/* Col 3 - Resources */}
+        {/* Col 2 - Quick Links */}
         <div className="pl-10">
-          <h4 className="text-(--primary-color) font-bold  mb-4">Resources</h4>
+          <h4 className="text-(--primary-color) font-bold mb-4">Terms</h4>
           <ul className="flex flex-col gap-1">
-            {resources.map((item) => (
+            {Terms.map((item) => (
               <li key={item.name}>
                 <Link
                   to={item.path}
