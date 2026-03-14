@@ -14,7 +14,7 @@ import TermsConditions from "./pages/policies/TermsConditions";
 import DMCA from "./pages/policies/DMCA";
 import SignIn from "./pages/auth/SignIn";
 import ActivateFlow from "./pages/Activation/ActivationFlow";
-import TopUp from "./pages/TopUp/TopUp";
+import TopUpMobile from "./pages/TopUp/TopUpMobile";
 import ActivateStep from "./pages/TopUp/ActivateStep";
 
 
@@ -35,7 +35,7 @@ const router = createBrowserRouter([
       { path: "/DMCA", element: <DMCA /> },
       { path: "/SignIn", element: <SignIn /> },
       { path: "/ActivateFlow", element: <ActivateFlow /> },
-      { path: "/TopUp", element: <TopUp /> },
+      { path: "/TopUpMobile", element: <TopUpMobile /> },
       { path: "/ActivateStep", element: <ActivateStep /> },
     ],
   },

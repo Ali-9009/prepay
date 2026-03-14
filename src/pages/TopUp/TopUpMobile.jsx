@@ -1,7 +1,7 @@
 import FAQ from "../Faq";
 
 
-export default function TopUp() {
+export default function TopUpMobile() {
 
     const carriers = [
         { id: "att", name: "AT&T", bg: "#00A8E0", color: "#fff", logo: "/images/at-t.png", category: "topup" },
@@ -56,7 +56,6 @@ export default function TopUp() {
                 </div>
             </section>
 
-            {/* BRAND CARDS */}
             <div className="flex flex-wrap gap-4 mt-6 items-center justify-center max-w-6xl mx-auto px-6">
                 {carriers.map((category, index) => (
                     <div

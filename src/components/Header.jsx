@@ -4,7 +4,7 @@ import { Smartphone, Mail, Menu, X, ChevronDown, Globe } from "lucide-react";
 
 const navLinks = [
   { label: "eSim Activation's", to: "/#" },
-  { label: "Mobile Top-up", to: "/TopUp" },
+  { label: "Mobile Top-up", to: "/TopUpMobile" },
   { label: "Entertainment", to: "/entertainment" },
   { label: "Gaming", to: "/gaming" },
   { label: "Payment Cards", to: "/payment" },
