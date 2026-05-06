@@ -59,15 +59,15 @@ export default function Sidebar() {
       <div
         ref={sidebarRef}
         className={`
-          fixed top-0 left-0 h-full bg-[#fbfbfb] rounded-xl p-6 shadow-md
-          w-64 transform transition-transform duration-300 z-50
-          ${open ? "translate-x-0" : "-translate-x-full"}
-          
-          /* Desktop */
-          lg:relative lg:translate-x-0 lg:block lg:h-auto lg:shadow-none
-          
-          overflow-auto
-        `}
+    fixed top-0 left-0 h-full bg-[#fbfbfb] rounded-xl p-6 shadow-md
+    w-64 transform transition-transform duration-300 z-50
+    ${open ? "translate-x-0" : "-translate-x-full"}
+    
+    /* Desktop FIX */
+    lg:sticky lg:top-6 lg:h-[calc(100vh-3rem)] lg:translate-x-0 lg:block lg:shadow-none
+    
+    overflow-auto
+  `}
       >
         {/* PROFILE */}
         <div className="flex items-center gap-3 mb-6 border border-red-500 rounded-full p-1">

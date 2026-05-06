@@ -12,11 +12,8 @@ const plans = [
 
 export default function AddData() {
   return (
-    <div className="py-12 px-4">
+    <div className="">
       <div className="max-w-6xl mx-auto flex gap-6">
-
-        {/* Sidebar */}
-        <Sidebar />
 
         {/* Content */}
         <div className="flex-1 max-w-5xl mx-auto bg-[#fbfbfb] rounded-xl p-4">

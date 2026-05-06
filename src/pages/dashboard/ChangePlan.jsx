@@ -4,9 +4,8 @@ import Sidebar from "./Sidebar";
 export default function ChangePlan() {
 
   return (
-    <div className="py-12 px-4">
+    <div className="">
       <div className="max-w-6xl mx-auto flex gap-6">
-        <Sidebar />
 
         {/* content */}
         <div className="flex-1 bg-[#fbfbfb] rounded-xl p-4">

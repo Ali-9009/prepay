@@ -7,7 +7,7 @@ function Footer() {
     { name: "Why Choose", path: "/WhySection" },
     { name: "How it work", path: "/how-its-work" },
     { name: "Store Locator", path: "/StoreLocator" },
-    { name: "Start Activation journey", path: "/StartActivation/purchase" },
+    // { name: "Start Activation journey", path: "/StartActivation/purchase" },
     { name: "P-SIM", path: "/purchasePsim" },
     { name: "E-SIM", path: "/purchaseEsim" },
     { name: "Port-In", path: "/purchasePort" },

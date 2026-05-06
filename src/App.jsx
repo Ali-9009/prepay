@@ -83,6 +83,7 @@ import PurchasePort from "./pages/Port_In/PurchasePort";
 import PortInLayout from "./pages/Port_In/PortInLayout";
 import PurchasePortInPSim from "./pages/Port_In_PSim/PurchasePortInPsim";
 import PortInPSimLayout from "./pages/Port_In_PSim/PortInPSimLayout";
+import DashboardLayout from "./pages/dashboard/DashboardLayout";
 
 
 
@@ -121,14 +122,22 @@ const router = createBrowserRouter([
       { path: "/Checkout", element: <Checkout /> },
 
       // Dashboard
-      { path: "/dashboard/myline", element: <MyLine /> },
-      { path: "/dashboard/profile", element: <Profile /> },
-      { path: "/dashboard/billing", element: <Billing /> },
-      { path: "/dashboard/referral", element: <Referral /> },
-      { path: "/dashboard/helpcenter", element: <HelpCenter /> },
-      { path: "/dashboard/myline/invoice", element: <Invoice /> },
-      { path: "/dashboard/myline/changeplan", element: <ChangePlan /> },
-      { path: "/dashboard/myline/adddata", element: <AddData /> },
+      {
+        path: "/dashboard",
+        element: <DashboardLayout />, // 👈 shared layout with Sidebar
+        children: [
+          { path: "myline", element: <MyLine /> },
+          { path: "profile", element: <Profile /> },
+          { path: "billing", element: <Billing /> },
+          { path: "referral", element: <Referral /> },
+          { path: "helpcenter", element: <HelpCenter /> },
+
+          // nested under myline
+          { path: "myline/invoice", element: <Invoice /> },
+          { path: "myline/changeplan", element: <ChangePlan /> },
+          { path: "myline/adddata", element: <AddData /> },
+        ]
+      },
 
       // Start Activation
       { path: "/startactivation/purchase", element: <Purchase /> },

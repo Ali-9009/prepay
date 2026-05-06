@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import Popup from "../components/Popup"; // make sure this exists
 import Breadcrumbs from "../components/Breadcrumbs"; // <-- import
+import ChatWidget from "../components/ChatWidget";
 
 export default function Layout() {
   const [isOpen, setIsOpen] = useState(false);
@@ -70,6 +71,7 @@ export default function Layout() {
         {showBreadcrumbs && <Breadcrumbs />}
 
         <Outlet />
+        <ChatWidget />
       </main>
 
       {!hideLayout && <Footer />}
