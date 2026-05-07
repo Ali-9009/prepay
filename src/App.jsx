@@ -84,6 +84,7 @@ import PortInLayout from "./pages/Port_In/PortInLayout";
 import PurchasePortInPSim from "./pages/Port_In_PSim/PurchasePortInPsim";
 import PortInPSimLayout from "./pages/Port_In_PSim/PortInPSimLayout";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
+import ActivationReceipt from "./pages/dashboard/ActivationReceipt";
 
 
 
@@ -136,9 +137,10 @@ const router = createBrowserRouter([
           { path: "myline/invoice", element: <Invoice /> },
           { path: "myline/changeplan", element: <ChangePlan /> },
           { path: "myline/adddata", element: <AddData /> },
+          
         ]
       },
-
+      { path: "/viewreceipt", element: <ActivationReceipt /> },
       // Start Activation
       { path: "/startactivation/purchase", element: <Purchase /> },
       { path: "/startactivation/stepperform", element: <StepperForm /> },

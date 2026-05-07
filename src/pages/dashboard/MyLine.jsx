@@ -1,21 +1,43 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Sidebar from "./Sidebar";
 import Button from "../../components/Gbtn"
+import { DataUsage, QrCode } from "./modules";
 
 const controlButtons = [
-  { label: "View Usage", to: "/dashboard/myline/invoice" },
+  { label: "View Usage", action: "usage" },
   { label: "Add more data", to: "/dashboard/myline/adddata" },
   { label: "Change Plan", to: "/dashboard/myline/changeplan" },
-  { label: "View Invoice", to: "/dashboard/myline/invoice" },
-  { label: "Resume Activation", to: "/purchasePsim" },
-  { label: "Cancel plan", to: "#" },
-  { label: "Cancel plan", to: "#" },
-  { label: "Cancel plan", to: "#" },
-  { label: "Cancel plan", to: "#" },
-  { label: "Cancel plan", to: "#" },
+  { label: "View Invoice", to: "/viewreceipt" },
+  { label: "Pause Plan", to: "/purchasePsim" },
+  { label: "Cancel Plan", to: "#" },
+  { label: "Scan QR Code", action: "qr" },
+  { label: "Account Number/PIN", to: "#" },
 ];
-
 export default function MyLine() {
+
+  const navigate = useNavigate();
+
+  const [usageOpen, setUsageOpen] = useState(false);
+  const [qrOpen, setQrOpen] = useState(false);
+
+  const handleControlClick = (item) => {
+    if (item.action === "usage") {
+      setUsageOpen(true);
+      return;
+    }
+
+    if (item.action === "qr") {
+      setQrOpen(true);
+      return;
+    }
+
+    if (item.to && item.to !== "#") {
+      navigate(item.to);
+    }
+  };
+
   return (
     <div className="">
       <div className="max-w-6xl mx-auto flex gap-6">
@@ -116,7 +138,7 @@ export default function MyLine() {
               <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
                 <Link
                   to="/purchasePsim"
-                  className="bg-white rounded-lg py-2 md:py-4 px-6 font-semibold hover:bg-gray-200 transition w-55 inline-block"
+                  className="bg-white text-center rounded-lg py-2 md:py-4 px-6 font-semibold hover:bg-gray-200 transition w-55 inline-block"
                 >
                   Start Activation
                 </Link>
@@ -125,7 +147,11 @@ export default function MyLine() {
 
             <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6">
               <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
-                <p className="font-semibold text-[20px] mb-1">Line 02</p>
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-semibold text-[20px]">Line 02</p>
+
+                  <span className="w-5 h-5 rounded-full bg-lime-400"></span>
+                </div>
                 <p className="text-2xl font-semibold mb-2">00-0000-000</p>
 
                 <div className="mb-4 space-y-3">
@@ -172,14 +198,11 @@ export default function MyLine() {
                 </div>
 
                 <p>
+                  Plan Type: <span className="font-semibold">Unlimited</span>
+                </p>
+                <p>
                   Status:{" "}
                   <span className="text-lime-400 font-semibold">Active</span>
-                </p>
-                <p>
-                  Carrier: <span className="font-semibold">AT&T</span>
-                </p>
-                <p>
-                  Plan Type: <span className="font-semibold">Unlimited</span>
                 </p>
                 <p>
                   Amount: <span className="font-semibold">$45.00</span>
@@ -187,14 +210,29 @@ export default function MyLine() {
               </div>
 
               <div className="grid grid-cols-2 gap-4 bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
-                {controlButtons.map((button, index) => (
-                  <Link key={index} to={button.to}>
-                    <button className="bg-white rounded-lg py-2 md:py-4 font-semibold hover:bg-gray-200 transition w-full">
-                      {button.label}{" "}
-                    </button>
-                  </Link>
+                {controlButtons.map((item) => (
+                  <button
+                    key={item.label}
+                    onClick={() => handleControlClick(item)}
+                    className="h-12 px-4 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-800 hover:bg-gray-50 transition"
+                  >
+                    {item.label}
+                  </button>
                 ))}
               </div>
+              <DataUsage
+                open={usageOpen}
+                onClose={() => setUsageOpen(false)}
+                onReload={() => {
+                  console.log("reload usage");
+                }}
+              />
+              <QrCode
+                open={qrOpen}
+                onClose={() => setQrOpen(false)}
+                onReload={() => {
+                }}
+              />
             </div>
 
           </div>
