@@ -1,22 +1,68 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
-import Sidebar from "./Sidebar";
+import { Link, useNavigate } from "react-router-dom";
+import { DataUsage, QrCode, VerificationModal } from "./modules";
+import { useChat } from "../../context/ChatContext";
+
 import Button from "../../components/Gbtn"
-import { DataUsage, QrCode } from "./modules";
 
 const controlButtons = [
   { label: "View Usage", action: "usage" },
-  { label: "Add more data", to: "/dashboard/myline/adddata" },
-  { label: "Change Plan", to: "/dashboard/myline/changeplan" },
+
+  {
+    label: "Add more data",
+    chatTemplate: `Hi Support Team,
+
+I would like to Add more data.
+
+Line Name: Line 0
+Number: 0000000000
+Current Plan: Data, Talk and Text`
+
+  },
+
+  {
+    label: "Change Plan",
+    chatTemplate: `Hi Support Team,
+
+I would like to change my plan.
+
+Line Name: Line 0
+Number: 0000000000
+Current Plan: Data, Talk and Text`
+  },
+
+  {
+    label: "Cancel Plan",
+    chatTemplate: `Hi Support Team,
+
+I would like to cancel my plan.
+
+Line Name: Line 0
+Number: 00000000000`
+  },
+
+  {
+    label: "Pause Plan",
+    chatTemplate: `Hi Support Team,
+
+Please pause my plan temporarily.
+
+Line Name: Line 0
+Number: 00000000000`
+  },
+
   { label: "View Invoice", to: "/viewreceipt" },
-  { label: "Pause Plan", to: "/purchasePsim" },
-  { label: "Cancel Plan", to: "#" },
+
   { label: "Scan QR Code", action: "qr" },
+
   { label: "Account Number/PIN", to: "#" },
 ];
+
 export default function MyLine() {
 
+  const [verifyOpen, setVerifyOpen] = useState(false);
+  
+  const { openChat } = useChat();
   const navigate = useNavigate();
 
   const [usageOpen, setUsageOpen] = useState(false);
@@ -33,6 +79,16 @@ export default function MyLine() {
       return;
     }
 
+    if (item.label === "Account Number/PIN") {
+      setVerifyOpen(true);
+      return;
+    }
+
+    if (item.chatTemplate) {
+      openChat(item.chatTemplate);
+      return;
+    }
+
     if (item.to && item.to !== "#") {
       navigate(item.to);
     }
@@ -41,10 +97,10 @@ export default function MyLine() {
   return (
     <div className="">
       <div className="max-w-6xl mx-auto flex gap-6">
-        
+
         {/* content */}
         <div className="flex-1 bg-[#fbfbfb] rounded-xl p-4 md:p-6 lg:p-8">
-          
+
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6 items-stretch">
 
@@ -138,7 +194,7 @@ export default function MyLine() {
               <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
                 <Link
                   to="/purchasePsim"
-                  className="bg-white text-center rounded-lg py-2 md:py-4 px-6 font-semibold hover:bg-gray-200 transition w-55 inline-block"
+                  className="inline-flex items-center justify-center h-12 px-12 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-800 hover:bg-gray-50 active:scale-95 transition"
                 >
                   Start Activation
                 </Link>
@@ -232,6 +288,10 @@ export default function MyLine() {
                 onClose={() => setQrOpen(false)}
                 onReload={() => {
                 }}
+              />
+              <VerificationModal
+                open={verifyOpen}
+                onClose={() => setVerifyOpen(false)}
               />
             </div>
 
