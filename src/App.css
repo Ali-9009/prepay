@@ -24,6 +24,14 @@ card-shadow {
 
 }
 
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
 
 .secondary-heading {
   font-size: 30px;
@@ -45,7 +53,7 @@ card-shadow {
 .reviews-section {
   width: 100%;
   overflow: hidden;
-  padding:50px 0;
+  padding: 50px 0;
 }
 
 .marquee {
@@ -71,7 +79,7 @@ card-shadow {
   border-radius: 14px;
   padding: 20px;
   border: 1px solid #d1d5db;
-  
+
   text-align: center;
   flex-shrink: 0;
 }
@@ -131,5 +139,3 @@ card-shadow {
     transform: translateX(0);
   }
 }
-
-

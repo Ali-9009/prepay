@@ -1,6 +1,8 @@
 import { useEffect, useRef, useState } from "react";
-import { X, ArrowLeft, Copy, CreditCard, KeyRound } from "lucide-react";
+import { X, ArrowLeft, Copy, CreditCard, KeyRound, Cpu, CardSim, AlertTriangle, RefreshCcw, CircleCheckBig } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
+import { Link } from "react-router-dom";
+
 
 /* -------------------- USAGE RING -------------------- */
 function UsageRing({ value = 0 }) {
@@ -97,7 +99,7 @@ export function QrCode({ open, onClose, onReload }) {
     return (
         <div
             onMouseDown={handleBackdropClick}
-            className="fixed inset-0 z-50 bg-black/30 flex items-center justify-center px-4"
+            className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center px-4"
         >
             <div
                 ref={modalRef}
@@ -175,7 +177,7 @@ export function DataUsage({ open, onClose, onReload }) {
     return (
         <div
             onMouseDown={handleBackdropClick}
-            className="fixed inset-0 z-50 bg-black/30 flex items-end sm:items-center justify-center px-3 sm:px-4"
+            className="fixed inset-0 z-50 bg-black/50 flex items-end sm:items-center justify-center px-3 sm:px-4"
         >
             <div
                 ref={modalRef}
@@ -233,10 +235,6 @@ export function DataUsage({ open, onClose, onReload }) {
         </div>
     );
 }
-
-
-
-
 
 
 export function VerificationModal({ open, onClose }) {
@@ -485,6 +483,494 @@ export function VerificationModal({ open, onClose }) {
                         </button>
                     </div>
                 )}
+            </div>
+        </div>
+    );
+}
+
+
+export default function AutoPay({
+    open,
+    onClose,
+    onConfirm,
+}) {
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        if (!open) return;
+
+        const handleKey = (e) => {
+            if (e.key === "Escape") onClose?.();
+        };
+
+        document.addEventListener("keydown", handleKey);
+
+        return () => {
+            document.removeEventListener("keydown", handleKey);
+        };
+    }, [open, onClose]);
+
+    if (!open) return null;
+
+    const handleOverlayClick = (e) => {
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+            onClose?.();
+        }
+    };
+
+    return (
+        <div
+            onClick={handleOverlayClick}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
+        >
+            <div
+                ref={modalRef}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-md rounded-2xl bg-white shadow-2xl"
+            >
+                {/* Close button */}
+                <button
+                    onClick={onClose}
+                    className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-gray-600"
+                    aria-label="Close"
+                >
+                    <X size={18} />
+                </button>
+
+                <div className="px-5 py-7 sm:px-8">
+                    {/* Icon */}
+                    <div className="mx-auto mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-red-50">
+                        <AlertTriangle size={22} className="text-red-500" />
+                    </div>
+
+                    {/* Title */}
+                    <h2 className="text-center text-xl font-semibold text-gray-900 sm:text-2xl">
+                        Stop Automatic Renewal?
+                    </h2>
+
+                    {/* Content */}
+                    <div className="mt-5 space-y-3 text-sm text-gray-600 sm:text-[15px]">
+                        <p className="flex gap-2">
+                            <span className="mt-0.5 text-gray-400">•</span>
+                            <span>Your plan will no longer renew automatically.</span>
+                        </p>
+
+                        <p className="flex gap-2">
+                            <span className="mt-0.5 text-gray-400">•</span>
+                            <span>
+                                Service may be interrupted after your current plan expires.
+                            </span>
+                        </p>
+                    </div>
+
+                    <div className="my-6 border-t border-gray-100" />
+
+                    {/* Actions */}
+                    <div className="flex flex-col gap-3 sm:flex-row">
+                        <button
+                            onClick={onClose}
+                            className="w-full rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                        >
+                            Keep Current Setting
+                        </button>
+
+                        <button
+                            onClick={onConfirm}
+                            className="w-full rounded-xl bg-(--primary-color) px-5 py-3 text-sm font-semibold text-white transition hover:opacity-95"
+                        >
+                            Turn Off AutoPay
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+export function SimSwap({
+    open,
+    onClose,
+    onSelect,
+}) {
+    const modalRef = useRef(null);
+    const [selectedType, setSelectedType] = useState("");
+    const [iccid, setIccid] = useState("");
+
+    useEffect(() => {
+        if (!open) return;
+
+        const handleKey = (e) => {
+            if (e.key === "Escape") onClose?.();
+        };
+
+        document.addEventListener("keydown", handleKey);
+
+        return () => {
+            document.removeEventListener("keydown", handleKey);
+        };
+    }, [open, onClose]);
+
+    useEffect(() => {
+        if (!open) {
+            setSelectedType("");
+            setIccid("");
+        }
+    }, [open]);
+
+    if (!open) return null;
+
+    const handleOverlayClick = (e) => {
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+            onClose?.();
+        }
+    };
+
+    const handleConfirm = () => {
+        onSelect?.({
+            type: selectedType,
+            iccid,
+        });
+
+        onClose?.();
+    };
+
+    return (
+        <div
+            onClick={handleOverlayClick}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-4"
+        >
+            <div
+                ref={modalRef}
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-xl rounded-2xl bg-white shadow-2xl"
+            >
+                <button
+                    onClick={onClose}
+                    className="absolute right-4 top-4 flex h-9 w-9 items-center justify-center rounded-full text-gray-600"
+                >
+                    <X size={18} />
+                </button>
+
+                <div className="p-5 md:p-6">
+                    <h2 className="text-xl font-semibold text-center mb-2">
+                        SIM Swap
+                    </h2>
+
+                    <p className="text-sm text-gray-500 text-center mb-6">
+                        Select the type of SIM you want to activate.
+                    </p>
+
+                    <div className="max-w-xl mx-auto grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-5">
+                        <button
+                            onClick={() => {
+                                setSelectedType("esim");
+                                onSelect?.({ type: "esim" }); // tell parent
+                                onClose?.(); // close this modal
+                            }}
+                            className={`cursor-pointer rounded-xl border-2 p-5 transition ${selectedType === "esim"
+                                ? "border-red-500 bg-red-50"
+                                : "border-gray-200 hover:border-red-500"
+                                }`}
+                        >
+                            <div className="flex flex-col items-center text-center">
+                                <div className="mb-4 text-red-500">
+                                    <Cpu size={28} />
+                                </div>
+
+                                <h3 className="text-sm font-semibold">eSIM</h3>
+                            </div>
+                        </button>
+
+                        <button
+                            onClick={() => setSelectedType("physical")}
+                            className={`cursor-pointer rounded-xl border-2 p-5 transition ${selectedType === "physical"
+                                ? "border-red-500 bg-red-50"
+                                : "border-gray-200 hover:border-red-500"
+                                }`}
+                        >
+                            <div className="flex flex-col items-center text-center">
+                                <div className="mb-4 text-red-500">
+                                    <CardSim size={28} />
+                                </div>
+
+                                <h3 className="text-sm font-semibold">
+                                    Physical SIM (pSIM)
+                                </h3>
+                            </div>
+                        </button>
+                    </div>
+
+                    {selectedType === "physical" && (
+                        <div className="mb-5">
+                            <label className="block text-xs font-medium text-gray-700 mb-2">
+                                ICCID Number
+                            </label>
+
+                            <input
+                                value={iccid}
+                                onChange={(e) => setIccid(e.target.value)}
+                                placeholder="Enter 18–20 digit ICCID"
+                                className="w-full h-10 rounded-md border border-gray-200 px-3 text-sm text-gray-700 placeholder:text-gray-400 focus:outline-none"
+                            />
+                        </div>
+                    )}
+
+                    {selectedType === "physical" && (
+                        <button
+                            onClick={handleConfirm}
+                            className="w-full rounded-lg bg-black px-5 py-3 text-sm font-semibold text-white transition hover:opacity-90"
+                        >
+                            Confirm SIM Swap
+                        </button>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+
+export function EsimStep({ open, onClose, onReload }) {
+    const [step, setStep] = useState(1);
+    const [otp, setOtp] = useState(["", "", "", "", "", ""]);
+
+    const modalRef = useRef(null);
+
+    useEffect(() => {
+        if (!open) return;
+
+        const handleKey = (e) => {
+            if (e.key === "Escape") onClose?.();
+        };
+
+        document.addEventListener("keydown", handleKey);
+        return () => document.removeEventListener("keydown", handleKey);
+    }, [open, onClose]);
+
+    useEffect(() => {
+        if (!open) {
+            setStep(1);
+            setOtp(["", "", "", "", "", ""]);
+        }
+    }, [open]);
+
+    if (!open) return null;
+
+    const handleOutside = (e) => {
+        if (modalRef.current && !modalRef.current.contains(e.target)) {
+            onClose?.();
+        }
+    };
+
+    const handleOtp = (value, index) => {
+        const copy = [...otp];
+        copy[index] = value.slice(-1);
+        setOtp(copy);
+
+        if (value && index < 5) {
+            document.getElementById(`otp-${index + 1}`)?.focus();
+        }
+    };
+
+    return (
+        <div
+            onMouseDown={handleOutside}
+            className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-3"
+        >
+            <div
+                ref={modalRef}
+                onMouseDown={(e) => e.stopPropagation()}
+                className="w-full max-w-md bg-white rounded-2xl shadow-xl relative p-5"
+            >
+                {/* HEADER */}
+                <div className="flex items-center justify-between mb-4">
+                    {step > 1 ? (
+                        <button
+                            onClick={() => setStep(1)}
+                            className="text-sm text-gray-600"
+                        >
+                            ← Back
+                        </button>
+                    ) : (
+                        <div />
+                    )}
+
+                    <button onClick={onClose}>
+                        ✕
+                    </button>
+                </div>
+
+                {/* STEP 1 */}
+                {step === 1 && (
+                    <div className="text-center">
+                        <h2 className="text-2xl font-bold">Scan QR Code</h2>
+
+                        <p className="text-sm text-gray-500 mt-2">
+                            Scan this QR code from your device to activate your eSIM.
+                        </p>
+
+                        <button
+                            onClick={onReload}
+                            className="mt-4 text-sm font-medium text-gray-800"
+                        >
+                            Reload QR Code
+                        </button>
+
+                        <div className="mt-6 mx-auto w-fit">
+                            <img
+                                src="/images/qr-code.png"
+                                className="w-44 h-44"
+                                alt="QR"
+                            />
+                        </div>
+
+                        <button
+                            onClick={() => setStep(2)}
+                            className="w-full mt-6 bg-black text-white py-2.5 rounded-lg"
+                        >
+                            Continue
+                        </button>
+                    </div>
+                )}
+
+                {/* STEP 2 */}
+                {step === 2 && (
+                    <div className="text-center">
+                        <h2 className="text-lg font-semibold">Verify Account</h2>
+
+                        <p className="text-sm text-gray-500 mb-4">
+                            Enter OTP sent to your number
+                        </p>
+
+                        <div className="flex justify-center gap-2 mb-4">
+                            {otp.map((d, i) => (
+                                <input
+                                    key={i}
+                                    id={`otp-${i}`}
+                                    value={d}
+                                    maxLength={1}
+                                    onChange={(e) => handleOtp(e.target.value, i)}
+                                    className="w-10 h-10 text-center border rounded-lg"
+                                />
+                            ))}
+                        </div>
+
+                        <p className="text-xs text-gray-500 underline mb-4">
+                            Resend OTP
+                        </p>
+
+                        <Link
+                            to="#"
+                            className="w-full block text-center bg-black text-white py-2.5 rounded-lg"
+                        >
+                            Verify & Activate
+                        </Link>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
+
+
+
+export function PaymentMethod({ open, onClose, onSave }) {
+    const modalRef = useRef(null);
+
+    const [selectedId, setSelectedId] = useState(2);
+
+    const methods = [
+        { id: 1, type: "Visa", last4: "5556", expires: "12/2031" },
+        { id: 2, type: "Visa", last4: "1111", expires: "04/2045" },
+        { id: 3, type: "Mastercard", last4: "4444", expires: "02/2028" },
+        { id: 4, type: "Visa", last4: "4242", expires: "12/2034" },
+    ];
+
+    useEffect(() => {
+        const handleClickOutside = (e) => {
+            if (modalRef.current && !modalRef.current.contains(e.target)) {
+                onClose?.();
+            }
+        };
+
+        if (open) document.addEventListener("mousedown", handleClickOutside);
+
+        return () =>
+            document.removeEventListener("mousedown", handleClickOutside);
+    }, [open, onClose]);
+
+    if (!open) return null;
+
+    const handleSave = () => {
+        const selected = methods.find((m) => m.id === selectedId);
+
+        onSave?.(selected);
+        onClose?.();
+    };
+
+    return (
+        <div className="fixed inset-0 z-50 bg-black/40 flex items-center justify-center p-4">
+            <div
+                ref={modalRef}
+                className="w-full max-w-lg bg-white rounded-2xl shadow-xl p-5 md:p-6 relative"
+            >
+                {/* CLOSE BUTTON (X) */}
+                <button
+                    onClick={onClose}
+                    className="absolute top-3 right-3 text-gray-500 hover:text-black text-xl"
+                >
+                    ✕
+                </button>
+
+                {/* HEADER */}
+                <div className="text-center mb-4">
+                    <h2 className="text-lg font-semibold">Select Payment Method</h2>
+                </div>
+
+                {/* LIST */}
+                <div className="space-y-3 max-h-80 overflow-y-auto">
+                    {methods.map((m) => {
+                        const isSelected = selectedId === m.id;
+
+                        return (
+                            <div
+                                key={m.id}
+                                onClick={() => setSelectedId(m.id)}
+                                className={`cursor-pointer flex items-center justify-between border rounded-xl px-4 py-3 transition-all
+                ${isSelected
+                                        ? "border-red-400 bg-yellow-50"
+                                        : "border-gray-200 hover:bg-gray-50"
+                                    }`}
+                            >
+                                <div>
+                                    <p className="text-sm font-medium">
+                                        {m.type} •••• {m.last4}
+                                    </p>
+                                    <p className="text-xs text-gray-500">
+                                        Expires {m.expires}
+                                    </p>
+                                </div>
+
+                                <div>
+                                    {isSelected ? (
+                                        <CircleCheckBig size={18} className="text-green-600" />
+                                    ) : (
+                                        <CircleCheckBig size={18} className="text-gray-600" />
+                                    )}
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                {/* SAVE */}
+                <button
+                    onClick={handleSave}
+                    className="w-full mt-5 bg-black text-white py-3 rounded-xl"
+                >
+                    Save
+                </button>
             </div>
         </div>
     );

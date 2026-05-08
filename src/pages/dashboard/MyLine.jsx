@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { DataUsage, QrCode, VerificationModal } from "./modules";
+import { DataUsage, EsimStep, QrCode, SimSwap, VerificationModal } from "./modules";
 import { useChat } from "../../context/ChatContext";
 
 import Button from "../../components/Gbtn"
+import AutoPayToggle from "./AutoPayToggle";
 
 const controlButtons = [
   { label: "View Usage", action: "usage" },
@@ -56,12 +57,13 @@ Number: 00000000000`
   { label: "Scan QR Code", action: "qr" },
 
   { label: "Account Number/PIN", to: "#" },
+  { label: "SIM Swap", action: "simSwap" },
 ];
 
 export default function MyLine() {
-
+  const [esimOpen, setEsimOpen] = useState(false);
   const [verifyOpen, setVerifyOpen] = useState(false);
-  
+  const [simSwapOpen, setSimSwapOpen] = useState(false);
   const { openChat } = useChat();
   const navigate = useNavigate();
 
@@ -76,6 +78,11 @@ export default function MyLine() {
 
     if (item.action === "qr") {
       setQrOpen(true);
+      return;
+    }
+
+    if (item.action === "simSwap") {
+      setSimSwapOpen(true);
       return;
     }
 
@@ -193,7 +200,7 @@ export default function MyLine() {
 
               <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
                 <Link
-                  to="/purchasePsim"
+                  to="/psimLayout"
                   className="inline-flex items-center justify-center h-12 px-12 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-800 hover:bg-gray-50 active:scale-95 transition"
                 >
                   Start Activation
@@ -235,21 +242,13 @@ export default function MyLine() {
 
                   <div className="flex items-start justify-between bg-white p-3 rounded-lg">
                     <div>
-                      <p className="text-lg font-semibold">Autopay</p>
+                      <p className="text-md font-semibold">Autopay</p>
                       <p className="text-sm text-gray-400">
                         automatically renew your plan
                       </p>
                     </div>
 
-                    <label className="relative inline-flex items-center cursor-pointer mt-1">
-                      <input
-                        type="checkbox"
-                        defaultChecked
-                        className="sr-only peer"
-                      />
-                      <div className="w-9 h-5 bg-gray-200 rounded-full peer peer-checked:bg-lime-400 transition-colors"></div>
-                      <div className="absolute left-0.5 top-0.5 w-4 h-4 bg-white rounded-full peer-checked:translate-x-4 transition-transform"></div>
-                    </label>
+                    <AutoPayToggle />
                   </div>
                 </div>
 
@@ -292,6 +291,19 @@ export default function MyLine() {
               <VerificationModal
                 open={verifyOpen}
                 onClose={() => setVerifyOpen(false)}
+              />
+              <SimSwap
+                open={simSwapOpen}
+                onClose={() => setSimSwapOpen(false)}
+                onSelect={(data) => {
+                  if (data.type === "esim") {
+                    setEsimOpen(true); // open EsimStep
+                  }
+                }}
+              />
+              <EsimStep
+                open={esimOpen}
+                onClose={() => setEsimOpen(false)}
               />
             </div>
 
