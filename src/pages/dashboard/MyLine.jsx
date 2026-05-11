@@ -166,10 +166,11 @@ export default function MyLine() {
             <h2 className="font-semibold text-2xl">
               My Line <span className="text-gray-400 text-sm">Total: 02</span>
             </h2>
-
-            <button className="bg-black text-white rounded-full px-6 py-2 text-sm font-semibold hover:opacity-80 transition self-start sm:self-auto">
-              Request A New Sim Card
-            </button>
+            <Link to="/newSimCard">
+              <button className="bg-black text-white rounded-full px-6 py-2 text-sm font-semibold hover:opacity-80 transition self-start sm:self-auto">
+                Request A New Sim Card
+              </button>
+            </Link>
           </div>
 
           {/* MY LINE SECTION */}

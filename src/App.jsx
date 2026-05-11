@@ -39,7 +39,6 @@ const Billing = lazy(() => import("./pages/dashboard/Billing"));
 const Referral = lazy(() => import("./pages/dashboard/Referral"));
 const HelpCenter = lazy(() => import("./pages/dashboard/HelpCenter"));
 const Invoice = lazy(() => import("./pages/dashboard/Invoice"));
-const ChangePlan = lazy(() => import("./pages/dashboard/ChangePlan"));
 const AddData = lazy(() => import("./pages/dashboard/AddData"));
 
 // Start Activation
@@ -85,6 +84,7 @@ import PurchasePortInPSim from "./pages/Port_In_PSim/PurchasePortInPsim";
 import PortInPSimLayout from "./pages/Port_In_PSim/PortInPSimLayout";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import ActivationReceipt from "./pages/dashboard/ActivationReceipt";
+import NewSimCard from "./pages/dashboard/NewSimCard";
 
 
 
@@ -125,7 +125,7 @@ const router = createBrowserRouter([
       // Dashboard
       {
         path: "/dashboard",
-        element: <DashboardLayout />, // 👈 shared layout with Sidebar
+        element: <DashboardLayout />, // shared layout with Sidebar
         children: [
           { path: "myline", element: <MyLine /> },
           { path: "profile", element: <Profile /> },
@@ -135,11 +135,11 @@ const router = createBrowserRouter([
 
           // nested under myline
           { path: "myline/invoice", element: <Invoice /> },
-          { path: "myline/changeplan", element: <ChangePlan /> },
           { path: "myline/adddata", element: <AddData /> },
           
         ]
       },
+      { path: "/newSimCard", element: <NewSimCard /> },
       { path: "/viewreceipt", element: <ActivationReceipt /> },
       // Start Activation
       { path: "/startactivation/purchase", element: <Purchase /> },
