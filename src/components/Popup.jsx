@@ -18,7 +18,7 @@ const Popup = ({ isOpen, onClose }) => {
   };
 
   return (
-    <div onClick={onClose} className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-50 p-4">
+    <div onClick={onClose} className="fixed inset-0 bg-black/40 bg-opacity-50 flex items-center justify-center z-120 p-4">
       <div onClick={(e) => e.stopPropagation()} className="relative max-w-5xl w-full bg-[url('/images/popup-bg.png')] bg-cover bg-center rounded-2xl overflow-hidden">
         {/* Back button on steps 2 & 3 */}
         {step > 1 && (
