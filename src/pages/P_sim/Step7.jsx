@@ -36,7 +36,7 @@ export default function Step7({ next, back }) {
               <p className="mt-2 text-sm">Use this option to start service later.
                 Billing begins on the date you select.</p>
             </div>
-          </div>
+          </div> 
 
           {/* Start Now */}
           <div
