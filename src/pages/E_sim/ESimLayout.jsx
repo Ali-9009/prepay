@@ -5,14 +5,18 @@ import Step3 from "./Step3";
 import Step4 from "./Step4";
 import Step5 from "./Step5";
 import Step6 from "./Step6";
+// after MDN
+import Step7 from "./Step7";
+import Step8 from "./Step8";
 import ProgressBar from "./ProgressBar";
+import Step9 from "./Step9";
 
 export default function ESimLayout() {
   const [step, setStep] = useState(0);
   const [flowType, setFlowType] = useState(null);
   const [subFlow, setSubFlow] = useState(null);
 
-  const steps = [Step1, Step2, Step3, Step4, Step5, Step6];
+  const steps = [Step1, Step2, Step3, Step4, Step5, Step6, Step7, Step8, Step9];
   const CurrentStep = steps[step];
 
   const next = (goToStep, type = null) => {
@@ -46,6 +50,9 @@ export default function ESimLayout() {
           {step === 3 && "Your new number"}
           {step === 4 && "Connect your device"}
           {step === 5 && "Success"}
+          {step === 6 && "Select Your Date"}
+          {step === 7 && "Connect your device"}
+          {step === 7 && "You are all set"}
 
         </h2>
       </div>

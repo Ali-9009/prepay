@@ -1,9 +1,7 @@
 import { ArrowRight, Calendar, ChevronLeft } from "lucide-react";
 import Button from "../../components/Gbtn";
 
-export default function Step4({ back, next, flowType }) {
-
-    const baseFlow = flowType?.split("|")[0];
+export default function Step7({ back, next }) {
 
     return (
         <>
@@ -17,22 +15,17 @@ export default function Step4({ back, next, flowType }) {
                 </button>
 
                 <h2 className="text-white text-xl font-semibold">
-                    {baseFlow === "transfer"
-                        ? "Transfer your number"
-                        : "Yayyy! Here is your new number"}
+                    Select your service start date
                 </h2>
             </div>
 
             <div className="p-6 space-y-6">
-
-                {/* transfer */}
-                {baseFlow === "transfer" && (
                     <div className="p-6 space-y-6">
 
                         <div className="flex flex-col sm:flex-row gap-6 w-full text-center">
 
                             <div
-                                onClick={() => next(4, "schedule")}
+                                onClick={() => next(7, "schedule")}
                                 className="flex-1 w-full cursor-pointer"
                             >
                                 <div className="flex flex-col items-center w-full">
@@ -46,7 +39,7 @@ export default function Step4({ back, next, flowType }) {
                             </div>
 
                             <div
-                                onClick={() => next(4, "instant")}
+                                onClick={() => next(7, "instant")}
                                 className="flex-1 w-full cursor-pointer"
                             >
                                 <div className="flex flex-col items-center w-full">
@@ -61,16 +54,6 @@ export default function Step4({ back, next, flowType }) {
 
                         </div>
                     </div>
-                )}
-
-                {/* new */}
-                {baseFlow === "new" && (
-                    <div className="flex flex-col gap-6 items-center justify-center text-center">
-                        <h2 className="text-2xl font-bold">(512) 743 - 6742</h2>
-                        <Button onClick={() => next(6)} text="Select your service date" />
-                    </div>
-                )}
-
             </div>
         </>
     );
