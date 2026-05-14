@@ -22,8 +22,8 @@ export default function PortInPSimLayout() {
     // Step4,
     Step5,
     Step6,
-    Step7,
     Step8,
+    Step7,
     Step9,
   ];
 

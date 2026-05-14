@@ -30,7 +30,7 @@ export default function Step7({ next, back, flowType }) {
                 </div>
 
                 <div className="flex justify-center">
-                    <Button className="w-full" text="Connect your Device" onClick={() => next(6)} />
+                    <Button className="w-full" text="Connect your Device" onClick={() => next(7)} />
                 </div>
 
             </div>
