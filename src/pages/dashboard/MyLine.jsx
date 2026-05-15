@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { DataUsage, EsimStep, QrCode, SimSwap, VerificationModal } from "./modules";
+import { DataUsage, EsimStep, IccModal, QrCode, SimSwap, VerificationModal } from "./modules";
 import { useChat } from "../../context/ChatContext";
 
 import Button from "../../components/Gbtn"
@@ -66,6 +66,7 @@ export default function MyLine() {
   const [simSwapOpen, setSimSwapOpen] = useState(false);
   const { openChat } = useChat();
   const navigate = useNavigate();
+  const [openModal, setOpenModal] = useState(false);
 
   const [usageOpen, setUsageOpen] = useState(false);
   const [qrOpen, setQrOpen] = useState(false);
@@ -306,6 +307,161 @@ export default function MyLine() {
                 open={esimOpen}
                 onClose={() => setEsimOpen(false)}
               />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6">
+              <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-semibold text-[20px]">Line 03</p>
+
+                  <span className="w-5 h-5 rounded-full bg-lime-400"></span>
+                </div>
+                <p className="text-2xl font-semibold ">00-0000-000</p>
+                <p className="mb-2 text-sm">Please start your plan first, and then you can enable  international calling to reach over 229 countries worldwide.</p>
+
+                <hr className="text-gray-400 mb-2" />
+
+                <p>
+                  Plan Type: <span className="font-semibold">10GB High-Speed Data</span>
+                </p>
+                <p>
+                  Status: <span className="text-gray-400">Activation Pending</span>
+                </p>
+                <p>
+                  Amount: <span className="font-semibold">$90.00</span>
+                </p>
+              </div>
+
+              <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
+                <button
+                  onClick={() => setOpenModal(true)}
+                  className="inline-flex items-center justify-center h-12 px-12 rounded-xl border border-gray-200 bg-white text-sm font-medium text-gray-800 hover:bg-gray-50 active:scale-95 transition"
+                >
+                  Received my Prepay SIM
+                </button>
+              </div>
+
+              {/* Modal Component */}
+              <IccModal
+                isOpen={openModal}
+                onClose={() => setOpenModal(false)}
+              />
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6">
+              <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-semibold text-[20px]">Line 04</p>
+
+                  <span className="w-5 h-5 rounded-full bg-gray-400"></span>
+                </div>
+                <p className="text-sm mb-2">International calling is not included in your plan. Upgrade now to enable calls 229 countries.</p>
+
+                <hr className="text-gray-400 mb-2" />
+
+                <p>
+                  Plan Type: <span className="font-semibold">7 Days Plan</span>
+                </p>
+                <p>
+                  Status: <span className="text-gray-400">Need Schedule</span>
+                </p>
+                <p>
+                  Amount: <span className="font-semibold">$9.00</span>
+                </p>
+              </div>
+
+              <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl flex items-center justify-between gap-4">
+
+                {/* Left Text */}
+                <p className="text-sm font-medium text-[#ff6b6b] leading-5">
+                  Your plan is not scheduled to start select date
+                </p>
+
+                {/* Right Buttons */}
+                <div className="flex flex-col gap-3 w-full max-w-45">
+                  <button className="h-11 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-800 hover:bg-gray-50 transition">
+                    Select start date
+                  </button>
+
+                  <button className="h-11 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-800 hover:bg-gray-50 transition">
+                    Start plan now
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6">
+              <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-semibold text-[20px]">Line 05</p>
+                  <span className="w-5 h-5 rounded-full bg-gray-400"></span>
+                </div>
+                <p className="text-2xl font-semibold mb-2">00-0000-000</p>
+
+                <hr className="text-gray-400 mb-2" />
+
+                <p>
+                  Plan Type: <span className="font-semibold">Lite</span>
+                </p>
+                <p>
+                  Status: <span className="text-red-400">Fail</span>
+                </p>
+                <p>
+                  Amount: <span className="font-semibold">$45.00</span>
+                </p>
+              </div>
+
+              <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl flex items-center gap-1">
+                <span className="text-sm font-semibold text-[#ff6b6b] whitespace-nowrap">
+                  Reason:
+                </span>
+
+                <p className="text-sm font-medium text-gray-800 leading-5">
+                  This SIM Already Activated Before.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-[2fr_3fr] gap-6">
+              <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl">
+                <div className="flex items-center justify-between gap-2">
+                  <p className="font-semibold text-[20px]">Line 06</p>
+
+                  <span className="w-5 h-5 rounded-full bg-gray-400"></span>
+                </div>
+                <p className="text-sm mb-2">Please start your plan first, and then you can enable  international calling to reach over 229 countries worldwide.</p>
+
+                <hr className="text-gray-400 mb-2" />
+
+                <p>
+                  Plan Type: <span className="font-semibold">10GB High-Speed Data</span>
+                </p>
+                <p>
+                  Status: <span className="text-gray-400">Activation Schedule</span>
+                </p>
+                <p>
+                  Amount: <span className="font-semibold">$90.00</span>
+                </p>
+              </div>
+
+              <div className="bg-gray-100 border border-gray-200 shadow-sm p-4 rounded-xl flex items-center justify-between gap-4">
+
+                {/* Left Text */}
+                <p className="text-sm font-medium leading-5">
+                  Your plan is scheduled to start on: <strong>27th May. 2026</strong>
+                </p>
+
+                {/* Right Buttons */}
+                <div className="flex flex-col gap-3 w-full max-w-45">
+                  <button className="h-11 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-800 hover:bg-gray-50 transition">
+                    Update start date
+                  </button>
+
+                  <button className="h-11 rounded-xl border border-gray-200 bg-white text-sm font-semibold text-gray-800 hover:bg-gray-50 transition">
+                    Start plan now
+                  </button>
+                </div>
+              </div>
             </div>
 
           </div>

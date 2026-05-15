@@ -975,3 +975,57 @@ export function PaymentMethod({ open, onClose, onSave }) {
         </div>
     );
 }
+
+
+export function IccModal({ isOpen, onClose }) {
+    const [iccid, setIccid] = useState("");
+
+    if (!isOpen) return null;
+
+    return (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-[2px] px-4">
+            <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
+
+                {/* Close Button */}
+                <button
+                    onClick={onClose}
+                    className="absolute right-4 top-4 text-gray-400 transition hover:text-black"
+                >
+                    <X size={18} />
+                </button>
+
+                {/* Heading */}
+                <h2 className="text-center text-xl font-semibold text-black">
+                    Enter ICCID Number
+                </h2>
+
+                {/* Sub text */}
+                <p className="mt-2 text-center text-sm text-gray-500 leading-relaxed">
+                    Please enter the ICCID printed on your nano SIM card
+                </p>
+
+                {/* Input */}
+                <div className="mt-6">
+                    <label className="mb-2 block text-sm font-medium text-gray-700">
+                        ICCID Number
+                    </label>
+
+                    <input
+                        type="text"
+                        value={iccid}
+                        onChange={(e) => setIccid(e.target.value)}
+                        placeholder="Enter 18 or 20 digit ICCID"
+                        className="h-11 w-full rounded-lg border border-gray-300 px-4 text-sm outline-none transition focus:border-black"
+                    />
+                </div>
+
+                {/* Button */}
+                <button
+                    className="mt-5 h-11 w-full rounded-lg bg-black text-sm font-medium text-white transition hover:opacity-90"
+                >
+                    Submit ICCID
+                </button>
+            </div>
+        </div>
+    );
+}
