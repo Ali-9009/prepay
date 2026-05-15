@@ -983,8 +983,14 @@ export function IccModal({ isOpen, onClose }) {
     if (!isOpen) return null;
 
     return (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-[2px] px-4">
-            <div className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl">
+        <div
+            onClick={onClose}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-[2px] px-4"
+        >
+            <div
+                onClick={(e) => e.stopPropagation()}
+                className="relative w-full max-w-sm rounded-2xl bg-white p-6 shadow-2xl"
+            >
 
                 {/* Close Button */}
                 <button
@@ -1020,9 +1026,7 @@ export function IccModal({ isOpen, onClose }) {
                 </div>
 
                 {/* Button */}
-                <button
-                    className="mt-5 h-11 w-full rounded-lg bg-black text-sm font-medium text-white transition hover:opacity-90"
-                >
+                <button className="mt-5 h-11 w-full rounded-lg bg-black text-sm font-medium text-white transition hover:opacity-90">
                     Submit ICCID
                 </button>
             </div>
