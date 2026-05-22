@@ -5,6 +5,7 @@ import WhySection from "../components/WhySection";
 import Steps from "../components/Steps";
 import FAQ from "./Faq"
 
+
 const serviceCards = [
   {
     icon: "/images/esim.png",

@@ -85,6 +85,8 @@ import PortInPSimLayout from "./pages/Port_In_PSim/PortInPSimLayout";
 import DashboardLayout from "./pages/dashboard/DashboardLayout";
 import ActivationReceipt from "./pages/dashboard/ActivationReceipt";
 import NewSimCard from "./pages/dashboard/NewSimCard";
+import GiftCards from "./pages/GiftCard";
+import VirtualCard from "./pages/VirtualCard";
 
 
 
@@ -99,7 +101,9 @@ const router = createBrowserRouter([
       { path: "/StoreLocator", element: <StoreLocations /> },
       { path: "/Faq", element: <FAQ /> },
       { path: "/Contact", element: <Contact /> },
-      { path: "/:category", element: <NavPage /> },
+      { path: "/gift-cards", element: <GiftCards /> },
+      { path: "/virtual-card", element: <VirtualCard /> },
+      // { path: "/:category", element: <NavPage /> },
       { path: "/DetailPage", element: <DetailPage /> },
 
       // Policies

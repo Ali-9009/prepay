@@ -36,7 +36,7 @@ export default function CountryDropdown() {
             {/* Selected */}
             <div
                 onClick={() => setOpen(!open)}
-                className="flex items-center px-3 mt-4 justify-between border border-gray-300 rounded-xl py-3 bg-white shadow-sm cursor-pointer"
+                className="flex items-center px-3 justify-between border border-gray-300 rounded-xl py-3 bg-white shadow-sm cursor-pointer"
             >
                 <div className="flex items-center gap-3">
                     <img
