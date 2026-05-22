@@ -38,7 +38,7 @@ export default function GiftCards() {
     return (
         <div className="w-full bg-white  px-4 lg:px-8 pt-16 pb-10">
             {/* HERO */}
-            <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+            <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
 
                 <div>
                     <div className="inline-flex items-center gap-2 bg-pink-50 text-pink-600 px-3 py-1 rounded-full text-sm font-medium">
@@ -61,12 +61,12 @@ export default function GiftCards() {
                         <CountryDropdown />
 
                         <button className="bg-red-500 hover:bg-red-600 px-3 py-2 text-white rounded-xl flex items-center justify-center gap-2">
-                            Browse Gift Cards <ChevronRight size={18} />
+                            Gift Cards <ChevronRight size={18} />
                         </button>
                     </div>
 
                     {/* FEATURES */}
-                    <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4 mt-6 border border-gray-200 rounded-2xl p-4 bg-white shadow-sm">
+                    <div className="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-2 mt-6 border border-gray-200 rounded-2xl p-4 bg-white shadow-sm">
 
                         {/* ITEM */}
                         <div className="flex items-start gap-3">
