@@ -1,11 +1,13 @@
 import { useState } from "react";
 import Button from "../components/Gbtn";
+import CheckoutProgress from "../components/CheckoutProgress";
 
 export default function Checkout2() {
     const [simType, setSimType] = useState("esim");
 
     return (
         <div className="px-4 py-12">
+            <CheckoutProgress  step={2} />
             <div className="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-6">
 
                 {/* ───────── LEFT SIDE ───────── */}
