@@ -1,12 +1,5 @@
 
-import {
-    CheckCircle,
-    Zap,
-    ShieldCheck,
-    BadgePercent,
-    ChevronRight,
-    Search,
-} from "lucide-react";
+import { CheckCircle, Zap, ShieldCheck, BadgePercent, ChevronRight, Search } from "lucide-react";
 
 import { useState } from "react";
 import CountryDropdown from "../components/Countries";

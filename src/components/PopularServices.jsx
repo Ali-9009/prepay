@@ -81,15 +81,15 @@ export default function PopularServices() {
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
-                <div className="flex items-center justify-center mb-8">
+                <div className="flex items-center justify-center mb-8 ">
 
-                    {/* Desktop Tabs */}
-                    <div className="hidden md:flex flex-wrap gap-2">
+                    {/* Tabs */}
+                    <div className="flex lg:flex-wrap overflow-x-auto md:overflow-visible gap-2 w-full md:w-auto scrollbar-hide">
                         {filterTabs.map((tab) => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveFilter(tab.id)}
-                                className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold border transition-all cursor-pointer ${activeFilter === tab.id
+                                className={`shrink-0 flex items-center justify-center gap-1.5 px-4 py-2 rounded-full text-xs font-semibold border transition-all whitespace-nowrap cursor-pointer ${activeFilter === tab.id
                                         ? "bg-[#111] text-white border-[#111]"
                                         : "bg-white text-[#444] border-[#ddd] hover:border-[#111] hover:text-[#111]"
                                     }`}
@@ -100,42 +100,6 @@ export default function PopularServices() {
                         ))}
                     </div>
 
-                    {/* Mobile Filter */}
-                    <div className="md:hidden relative">
-                        <button
-                            onClick={() =>
-                                setMobileFilterOpen(!mobileFilterOpen)
-                            }
-                            className="flex items-center justify-center p-2 rounded-full border border-gray-300 bg-white"
-                        >
-                            {mobileFilterOpen ? (
-                                <X size={18} />
-                            ) : (
-                                <Filter size={18} />
-                            )}
-                        </button>
-
-                        {mobileFilterOpen && (
-                            <div className="absolute right-0 mt-2 w-52 bg-white shadow-lg rounded-lg z-50 flex flex-col gap-2 p-2">
-                                {filterTabs.map((tab) => (
-                                    <button
-                                        key={tab.id}
-                                        onClick={() => {
-                                            setActiveFilter(tab.id);
-                                            setMobileFilterOpen(false);
-                                        }}
-                                        className={`flex items-center gap-2 px-3 py-2 rounded text-sm font-medium ${activeFilter === tab.id
-                                                ? "bg-[#111] text-white"
-                                                : "bg-white text-[#444] hover:bg-gray-100"
-                                            }`}
-                                    >
-                                        {tab.icon}
-                                        {tab.label}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
-                    </div>
                 </div>
 
                 {/* Grid */}
