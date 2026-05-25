@@ -16,7 +16,8 @@ import Button from "./Gbtn";
 
 const navLinks = [
   { label: "Mobile Topup", to: "/TopUpMobile", icon: Smartphone },
-  { label: "eSim Activation", to: "/TwoStepForm", icon: CardSim },
+  // { label: "eSim Activation", to: "/TwoStepForm", icon: CardSim },
+  { label: "eSim Activation", to: "/ActivationFlow", icon: CardSim },
   // { label: "Shopping", to: "/shopping", icon: ShoppingBag },
   // { label: "Entertainment", to: "/entertainment", icon: Music },
   // { label: "Gaming", to: "/gaming", icon: Gamepad2 },

@@ -87,6 +87,8 @@ import ActivationReceipt from "./pages/dashboard/ActivationReceipt";
 import NewSimCard from "./pages/dashboard/NewSimCard";
 import GiftCards from "./pages/GiftCard";
 import VirtualCard from "./pages/VirtualCard";
+import PrepaidIq from "./pages/PrepaidIq";
+import Checkout2 from "./pages/Checkout2";
 
 
 
@@ -193,6 +195,8 @@ const router = createBrowserRouter([
       // Port-In-PSim
       { path: "/purchasePortIn", element: <PurchasePortInPSim /> },
       { path: "/portInPSimLayout", element: <PortInPSimLayout /> },
+      { path: "/prepaidIq", element: <PrepaidIq /> },
+      { path: "/checkout-2", element: <Checkout2 /> },
     ],
   },
 ]);

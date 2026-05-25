@@ -242,7 +242,7 @@ export default function ActivationFlow() {
     const c2h = isMobile ? 445 : 210;
 
     return (
-        <div className="bg-red-50 py-8" style={{ minHeight: "100vh" }}>
+        <div className="py-8" style={{ minHeight: "100vh" }}>
             <style>{`
         @keyframes toastIn{from{opacity:0;transform:translateY(-20px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
         @keyframes shrinkBar{from{width:100%}to{width:0%}}
@@ -259,82 +259,124 @@ export default function ActivationFlow() {
 
 
             {/* ── Body ── */}
-            <div className="bg-white rounded-lg p-6 border-2 border-(--primary-color)" style={{ maxWidth: 960, margin: "0 auto", padding: isMobile ? "16px 12px" : "24px 16px" }}>
-                <div style={{ display: "flex", gap: isMobile ? 12 : 20 }}>
+            <div className="bg-white rounded-lg p-6" style={{ maxWidth: 960, margin: "0 auto", padding: isMobile ? "16px 12px" : "24px 16px" }}>
+                <div
+                    style={{
+                        display: "flex",
+                        flexDirection: isMobile ? "column" : "row",
+                        gap: isMobile ? 12 : 20
+                    }}
+                >
 
-                    {/* ── Left Stepper ── */}
-                    <div style={{
-                        display: "flex", flexDirection: "column", alignItems: "center",
-                        paddingTop: 5, flexShrink: 0, width: 20
-                    }}>
-                        <StepDot status={dotStatus(1)} />
-                        <StepConnector filled={step > 1} height={c1h} />
-                        <StepDot status={dotStatus(2)} />
-                        <StepConnector filled={step > 2} height={c2h} />
-                        <StepDot status={dotStatus(3)} />
-                    </div>
+                    {/* ── Left Stepper (Desktop) / Top Stepper (Mobile) ── */}
+                    {isMobile ? (
+                        <div className="mb-6">
+                            <div className="flex items-center justify-between px-6">
+                                <StepDot status={dotStatus(1)} />
+
+                                <div className="flex-1 h-0.5 mx-2 relative">
+                                    <div className="absolute inset-0 bg-gray-200" />
+                                    {step > 1 && (
+                                        <div className="absolute inset-0 bg-black animate-[growLineHorizontal_0.5s_ease]" />
+                                    )}
+                                </div>
+
+                                <StepDot status={dotStatus(2)} />
+
+                                <div className="flex-1 h-0.5 mx-2 relative">
+                                    <div className="absolute inset-0 bg-gray-200" />
+                                    {step > 2 && (
+                                        <div className="absolute inset-0 bg-black animate-[growLineHorizontal_0.5s_ease]" />
+                                    )}
+                                </div>
+
+                                <StepDot status={dotStatus(3)} />
+                            </div>
+
+                            {/* labels */}
+                            <div className="flex justify-between mt-2 px-2">
+                                <span className={`text-xs ${step >= 1 ? "text-black" : "text-gray-400"}`}>
+                                    Device
+                                </span>
+                                <span className={`text-xs ${step >= 2 ? "text-black" : "text-gray-400"}`}>
+                                    Carrier
+                                </span>
+                                <span className={`text-xs ${step >= 3 ? "text-black" : "text-gray-400"}`}>
+                                    Plan
+                                </span>
+                            </div>
+                        </div>
+                    ) : (
+                        <div style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "center",
+                            paddingTop: 5,
+                            flexShrink: 0,
+                            width: 20
+                        }}>
+                            <StepDot status={dotStatus(1)} />
+                            <StepConnector filled={step > 1} height={c1h} />
+                            <StepDot status={dotStatus(2)} />
+                            <StepConnector filled={step > 2} height={c2h} />
+                            <StepDot status={dotStatus(3)} />
+                        </div>
+                    )}
 
                     {/* ── Steps ── */}
                     <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 16, minWidth: 0 }}>
 
                         {/* STEP 1 */}
-                        <div>
-                            {/* On mobile: stack card + map vertically; on desktop: side-by-side */}
-                            <div className={`grid ${isMobile ? "grid-cols-1" : "grid-cols-2"} gap-3`}>
+                        <div className="w-full">
 
-                                <div className="flex-1 ">
+                            {/* Step badge */}
+                            <h3 className="text-sm font-semibold bg-lime-400 p-1 mb-1 rounded-full w-20 text-center">
+                                Step 01
+                            </h3>
 
-                                    <h3 className="text-sm font-semibold bg-lime-400 p-1 mb-1 rounded-full w-20 text-center">Step 01</h3>
+                            {/* Title */}
+                            <h2 className={`font-bold mb-3 ${isMobile ? "text-[18px]" : "text-2xl"}`}>
+                                Activate Your Device. <br />
+                                All Carrier’s & Plan.
+                            </h2>
 
-                                    <h2 className={`font-bold mb-3 ${isMobile ? "text-[18px]" : "text-2xl"} `}>
-                                        Activate Your Device. <br />
-                                        All Carrier’s & Plan.
-                                    </h2>
-                                    <div className="flex-1 bg-white rounded-2xl border border-gray-200 p-4 shadow-sm">
-                                        <div className="flex items-center gap-2 mb-3">
-                                            <span className={`font-bold ${isMobile ? "text-[13px]" : "text-[15px]"} text-gray-900`}>
-                                                Check your Device Compatibility
-                                            </span>
-                                        </div>
+                            {/* Card */}
+                            <div className="bg-white rounded-2xl border border-gray-200 p-4 shadow-sm">
 
-                                        <div className="flex gap-2 mb-2.5">
-
-                                            <TypingInput />
-
-                                            <button
-                                                onClick={handleCheck}
-                                                disabled={checking}
-                                                className={`bg-gray-800 text-white rounded-[10px] px-3.5 py-2.5 text-[13px] font-semibold flex items-center gap-1.5 shrink-0 cursor-pointer ${checking ? "opacity-70" : "opacity-100"}`}
-                                            >
-                                                {checking && (
-                                                    <svg className="spinner" width="12" height="12" fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24">
-                                                        <path strokeLinecap="round" d="M12 4a8 8 0 018 8" />
-                                                    </svg>
-                                                )}
-                                                {checking ? "…" : "Check"}
-                                            </button>
-
-                                            <button
-                                                onClick={handleSkip}
-                                                className="bg-gray-100 text-gray-600 rounded-[10px] px-3.5 py-2.25 text-[13px] font-semibold shrink-0 cursor-pointer"
-                                            >
-                                                Skip
-                                            </button>
-                                        </div>
-
-                                        <p className="text-gray-400 text-[11px] leading-[1.6] m-0">
-                                            Check compatibility and find the best network for your device.
-                                            Checkout instantly — no contracts, no confusion.
-                                        </p>
-                                    </div>
+                                <div className="flex items-center gap-2 mb-3">
+                                    <span className={`font-bold ${isMobile ? "text-[13px]" : "text-[15px]"} text-gray-900`}>
+                                        Check your Device Compatibility
+                                    </span>
                                 </div>
 
-                                {/* Map: hidden on mobile to save space, shown on desktop */}
-                                {!isMobile && (
-                                    <div className="flex items-center justify-center p-2">
-                                        <img src="/images/con-1.png" alt="" />
-                                    </div>
-                                )}
+                                <div className="flex gap-2 mb-2.5">
+                                    <TypingInput />
+
+                                    <button
+                                        onClick={handleCheck}
+                                        disabled={checking}
+                                        className={`bg-gray-800 text-white rounded-[10px] px-3.5 py-2.5 text-[13px] font-semibold flex items-center gap-1.5 shrink-0 cursor-pointer ${checking ? "opacity-70" : "opacity-100"}`}
+                                    >
+                                        {checking && (
+                                            <svg className="spinner" width="12" height="12" fill="none" stroke="white" strokeWidth="2.5" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" d="M12 4a8 8 0 018 8" />
+                                            </svg>
+                                        )}
+                                        {checking ? "…" : "Check"}
+                                    </button>
+
+                                    <button
+                                        onClick={handleSkip}
+                                        className="bg-gray-100 text-gray-600 rounded-[10px] px-3.5 py-2.25 text-[13px] font-semibold shrink-0 cursor-pointer"
+                                    >
+                                        Skip
+                                    </button>
+                                </div>
+
+                                <p className="text-gray-400 text-[11px] leading-[1.6] m-0">
+                                    Check compatibility and find the best network for your device.
+                                    Checkout instantly — no contracts, no confusion.
+                                </p>
 
                             </div>
                         </div>
@@ -355,21 +397,6 @@ export default function ActivationFlow() {
                                         <span className={`font-bold ${isMobile ? "text-[18px]" : "text-2xl"} `}>
                                             Shop Carrier & Plan
                                         </span>
-                                    </div>
-
-                                    {/* Filter buttons */}
-                                    <div className="flex gap-1.5 overflow-x-auto pb-0.5 shrink-0">
-                                        {["Duration", "Network", "Sort"].map((label, i) => (
-                                            <button
-                                                key={i}
-                                                className="flex items-center gap-1 border border-gray-300 rounded-full px-2.5 py-1 text-[10px] text-gray-600 bg-white whitespace-nowrap shrink-0 cursor-pointer"
-                                            >
-                                                {label}
-                                                <svg width="9" height="9" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                                                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                                                </svg>
-                                            </button>
-                                        ))}
                                     </div>
                                 </div>
 
@@ -397,23 +424,23 @@ export default function ActivationFlow() {
                                 ) : (
                                     <div className="flex gap-2.5 overflow-x-auto pb-0.5">
                                         <div className="flex gap-3 overflow-x-auto py-2">
-                                                {carriers.map((carrier, index) => (
-                                                    <div
-                                                        key={index}
-                                                        onClick={() => handleCarrier(index)}
-                                                        className={`flex items-center justify-center cursor-pointer transition rounded-lg p-1 outline-none
+                                            {carriers.map((carrier, index) => (
+                                                <div
+                                                    key={index}
+                                                    onClick={() => handleCarrier(index)}
+                                                    className={`flex items-center justify-center cursor-pointer transition rounded-lg p-1 outline-none
       ${selectedCarrier === index
-                                                                ? "border-2 border-lime-300"
-                                                                : "border-2 border-transparent"}
+                                                            ? "border-2 border-lime-300"
+                                                            : "border-2 border-transparent"}
     `}
-                                                    >
-                                                        <img
-                                                            src={carrier.logo}
-                                                            alt={carrier.name}
-                                                            className="w-40 transition"
-                                                        />
-                                                    </div>
-                                                ))}
+                                                >
+                                                    <img
+                                                        src={carrier.logo}
+                                                        alt={carrier.name}
+                                                        className="w-40 transition"
+                                                    />
+                                                </div>
+                                            ))}
                                         </div>
                                     </div>
                                 )}
@@ -440,7 +467,7 @@ export default function ActivationFlow() {
                     </div>
                 </div>
             </div>
-            <FAQ start={5} end={10} />
+
         </div>
     );
 }
