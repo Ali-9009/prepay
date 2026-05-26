@@ -1,95 +1,109 @@
-import { MapPin, Phone, Mail } from "lucide-react";
+import { Mail, MapPin, Phone, Send } from "lucide-react";
 import Button from "../components/Gbtn";
 
 export default function Contact() {
     return (
-        <main className="bg-red-50 min-h-screen">
+        <main className="px-4 py-16 text-gray-900">
+            <section className="mx-auto max-w-6xl">
 
-            {/* HEADER */}
-            <section className="text-center py-14 px-4">
-                <h2 className="text-4xl font-semibold">
-                    Contact Our Team
-                </h2>
-                <p className="text-gray-500 mt-3 max-w-xl mx-auto text-sm sm:text-base">
-                    We’re here to help. Reach out anytime and we’ll respond as quickly as possible.
-                </p>
-            </section>
+                <div className="mb-12 text-center">
 
-            {/* CONTACT CARDS */}
-            <section className="max-w-6xl mx-auto px-4 grid sm:grid-cols-2 md:grid-cols-3 gap-5 mb-12">
+                    <h1 className="primary-heading">
+                        Contact our support team
+                    </h1>
 
-                <div className="bg-white p-5 rounded-xl shadow-sm border border-(--primary-color) hover:shadow-md transition">
-                    <Phone className="text-[#EB4041] mb-3" />
-                    <h4 className="font-semibold text-gray-800">Call Us</h4>
-                    <p className="text-sm text-gray-500 mt-1">(786) 884-2070</p>
-                </div>
-
-                <div className="bg-white p-5 rounded-xl shadow-sm border border-(--primary-color) hover:shadow-md transition">
-                    <Mail className="text-[#EB4041] mb-3" />
-                    <h4 className="font-semibold text-gray-800">Email</h4>
-                    <p className="text-sm text-gray-500 mt-1">Support@helloprepay.com</p>
-                </div>
-
-                <div className="bg-white p-5 rounded-xl shadow-sm border border-(--primary-color) hover:shadow-md transition sm:col-span-2 md:col-span-1">
-                    <MapPin className="text-[#EB4041] mb-3" />
-                    <h4 className="font-semibold text-gray-800">Location</h4>
-                    <p className="text-sm text-gray-500 mt-1">
-                        Worldwide • 24/7 Support
+                    <p className="mx-auto mt-5 max-w-2xl text-gray-500">
+                        Questions, support, or business inquiries send us a message and
+                        our team will get back to you shortly.
                     </p>
                 </div>
 
-            </section>
+                <div className="grid gap-8 lg:grid-cols-[0.9fr_1.4fr]">
 
-            {/* FORM SECTION */}
-            <section className="max-w-4xl mx-auto px-4 pb-16">
+                    {/* LEFT PANEL */}
+                    <div className="rounded-xl bg-white p-8 shadow-sm border border-gray-100">
+                        <h2 className="text-2xl font-semibold">
+                            Let’s talk
+                        </h2>
 
-                <div className="bg-white rounded-2xl shadow-lg border border-(--primary-color) p-6 sm:p-10">
+                        <p className="mt-3 text-sm leading-6 text-gray-500">
+                            We’re available to help you with anything you need.
+                        </p>
 
-                    <h3 className="text-xl sm:text-2xl font-semibold text-gray-800 mb-6 text-center">
-                        Send us a message
-                    </h3>
+                        <div className="mt-10 space-y-5">
+                            <div className="flex gap-4">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#FFF0F0] text-[#EB4041]">
+                                    <Phone size={20} />
+                                </div>
+                                <div>
+                                    <h4 className="font-medium">Phone</h4>
+                                    <p className="mt-1 text-sm text-gray-500">(786) 884-2070</p>
+                                </div>
+                            </div>
 
-                    <form className="flex flex-col gap-4">
+                            <div className="flex gap-4">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#FFF0F0] text-[#EB4041]">
+                                    <Mail size={20} />
+                                </div>
+                                <div>
+                                    <h4 className="font-medium">Email</h4>
+                                    <p className="mt-1 text-sm text-gray-500 break-all">
+                                        support@helloprepay.com
+                                    </p>
+                                </div>
+                            </div>
 
-                        {/* Row 1 */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div className="flex gap-4">
+                                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-[#FFF0F0] text-[#EB4041]">
+                                    <MapPin size={20} />
+                                </div>
+                                <div>
+                                    <h4 className="font-medium">Location</h4>
+                                    <p className="mt-1 text-sm text-gray-500">
+                                        Worldwide • 24/7 Support
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* FORM */}
+                    <div className="rounded-xl bg-white p-6 shadow-sm border border-gray-100 sm:p-8 lg:p-10">
+                        <form className="space-y-5">
+                            <div className="grid gap-5 sm:grid-cols-2">
+                                <input
+                                    type="text"
+                                    placeholder="Full name"
+                                    className="h-14 w-full rounded-2xl border border-gray-200 bg-[#FCFCFC] px-5 text-sm outline-none transition focus:border-[#EB4041] focus:bg-white"
+                                />
+
+                                <input
+                                    type="email"
+                                    placeholder="Email address"
+                                    className="h-14 w-full rounded-2xl border border-gray-200 bg-[#FCFCFC] px-5 text-sm outline-none transition focus:border-[#EB4041] focus:bg-white"
+                                />
+                            </div>
+
                             <input
                                 type="text"
-                                placeholder="Your Name"
-                                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#EB4041]"
+                                placeholder="Subject"
+                                className="h-14 w-full rounded-2xl border border-gray-200 bg-[#FCFCFC] px-5 text-sm outline-none transition focus:border-[#EB4041] focus:bg-white"
                             />
 
-                            <input
-                                type="email"
-                                placeholder="Your Email"
-                                className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#EB4041]"
+                            <textarea
+                                rows={7}
+                                placeholder="Write your message..."
+                                className="w-full resize-none rounded-2xl border border-gray-200 bg-[#FCFCFC] px-5 py-4 text-sm outline-none transition focus:border-[#EB4041] focus:bg-white"
                             />
-                        </div>
 
-                        {/* Row 2 */}
-                        <input
-                            type="text"
-                            placeholder="Subject"
-                            className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#EB4041]"
-                        />
-
-                        {/* Row 3 */}
-                        <textarea
-                            placeholder="Your Message..."
-                            rows={5}
-                            className="w-full border border-gray-200 rounded-lg px-4 py-3 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#EB4041] resize-none"
-                        />
-
-                        <Button
-                            text="Send Message"
-                        />
-
-                    </form>
+                            <div className="flex justify-end">
+                                <Button text="Send Message" icon={<Send size={18} />} />
+                            </div>
+                        </form>
+                    </div>
 
                 </div>
-
             </section>
-
         </main>
     );
 }

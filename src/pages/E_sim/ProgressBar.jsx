@@ -14,7 +14,7 @@ export default function ProgressBar({ step, totalSteps }) {
 
                     {/* Circle */}
                     <div
-                        className={`z-10 mx-auto w-6 h-6 rounded-full flex items-center justify-center text-xs
+                        className={`z-2 mx-auto w-6 h-6 rounded-full flex items-center justify-center text-xs
             ${index <= step ? "bg-black text-white" : "bg-gray-300"}`}
                     >
                         {index + 1}

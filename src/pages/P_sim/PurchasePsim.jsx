@@ -2,7 +2,7 @@ import Button from "../../components/Gbtn"
 
 export default function PurchasePsim() {
   return (
-    <div className="min-h-screen flex items-center bg-red-50 justify-center py-12 px-4">
+    <div className="flex items-center bg-red-50 justify-center py-12 px-4">
       
       <div className="bg-white rounded-xl p-10 text-center w-150">
         

@@ -1,16 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import {
-    Smartphone,
-    CreditCard,
-    ShoppingBag,
-    Tv,
-    Gamepad2,
-    Filter,
-    X,
-    LayoutGrid,
-} from "lucide-react";
-
+import { Smartphone, CreditCard, ShoppingBag, Tv, Gamepad2, Filter, X, LayoutGrid } from "lucide-react";
 import { categories } from "../data/categories";
 
 // Tabs
@@ -103,18 +93,26 @@ export default function PopularServices() {
                 </div>
 
                 {/* Grid */}
-                <div className="flex flex-wrap gap-4 items-center justify-center max-w-6xl mx-auto">
+                <div className="grid grid-cols-3 gap-2 md:flex flex-wrap items-center justify-center">
                     {filteredData.map((item, index) => (
                         <div
                             key={index}
                             className="flex items-center justify-center cursor-pointer hover:scale-105 transition-transform duration-300"
                             onClick={() =>
-                                navigate("/virtual-card", {
-                                    state: {
-                                        brand: item,
-                                        category: activeFilter,
-                                    },
-                                })
+                                navigate(
+                                    activeFilter === "topup" ? "/ActivateStep" : "/virtual-card",
+                                    {
+                                        state: {
+                                            brand: item,
+                                            carrier: {
+                                                logo: item,
+                                                name: "Mobile Top-up",
+                                                price: 10,
+                                            },
+                                            category: activeFilter,
+                                        },
+                                    }
+                                )
                             }
                         >
                             <img

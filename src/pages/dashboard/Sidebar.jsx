@@ -41,18 +41,19 @@ export default function Sidebar() {
   return (
     <>
       {/* Hamburger (mobile + tablet only) */}
-      <div className="lg:hidden fixed md:top-48 top-55 left-4 z-50">
+      <div className="fixed bottom-4 left-1/2 z-8 -translate-x-1/2 lg:hidden">
         <button
           onClick={() => setOpen(!open)}
-          className="bg-white p-2 rounded-full shadow-md"
+          className="flex items-center gap-2 rounded-xl bg-black px-5 py-3 text-sm font-semibold text-white shadow-lg"
         >
-          {open ? <X size={24} /> : <Menu size={24} />}
+          {open ? <X size={20} /> : <Menu size={20} />}
+          {open ? "Close Menu" : "Open Menu"}
         </button>
       </div>
 
       {/* Overlay */}
       {open && (
-        <div className="fixed inset-0 bg-black/30 z-40 lg:hidden"></div>
+        <div className="fixed inset-0 bg-black/30 z-8 lg:hidden"></div>
       )}
 
       {/* Sidebar */}
@@ -62,11 +63,11 @@ export default function Sidebar() {
     
     /* MOBILE */
     fixed top-0 left-0 h-full w-64 bg-[#fbfbfb]
-    p-6 shadow-md z-50 transform transition-transform duration-300
+    p-6 shadow-md z-8 transform transition-transform duration-300
     ${open ? "translate-x-0" : "-translate-x-full"}
 
     /* DESKTOP */
-    lg:sticky lg:top-6 lg:h-fit lg:translate-x-0
+    lg:sticky lg:top-18 lg:h-fit lg:translate-x-0
     lg:shadow-none lg:block
 
     rounded-xl overflow-auto

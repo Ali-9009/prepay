@@ -11,15 +11,15 @@ export default function Layout() {
   const location = useLocation();
 
   const hideLayoutPaths = [
-    "/purchasePsim",
-    "/psimLayout",
-    "/eSimLayout",
-    "/purchaseEsim",
-    "/purchasePort",
-    "/portInLayout",
+    // "/purchasePsim",
+    // "/psimLayout",
+    // "/eSimLayout",
+    // "/purchaseEsim",
+    // "/purchasePort",
+    // "/portInLayout",
 
-    "/purchasePortIn",
-    "/portInPSimLayout",
+    // "/purchasePortIn",
+    // "/portInPSimLayout",
 
   ];
 

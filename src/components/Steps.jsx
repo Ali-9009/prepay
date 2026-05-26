@@ -20,60 +20,45 @@ const steps = [
 
 export default function Steps() {
     return (
-        <section className="bg-white py-12 px-6">
-            <div className="max-w-6xl mx-auto text-center">
+        <section className="overflow-hidden bg-black py-16 px-6 text-white">
+            <div className="mx-auto max-w-6xl">
 
                 {/* Heading */}
-                <h2 className="text-3xl lg:text-4xl font-semibold mb-3">
-                    Three steps. Under a minute.
-                </h2>
+                <div className="mb-14 text-center">
+                    <h2 className="mb-3 text-3xl font-semibold lg:text-4xl">
+                        Three steps. Under a minute.
+                    </h2>
 
-                {/* Subtext */}
-                <p className="text-gray-500 mb-16">
-                    We cut the unnecessary steps so you can get back to what matters.
-                </p>
+                    <p className="mx-auto max-w-2xl text-sm leading-relaxed text-gray-400">
+                        We cut the unnecessary steps so you can get back to what matters.
+                    </p>
+                </div>
 
                 {/* Steps */}
-                <div className="grid md:grid-cols-3 gap-8 relative">
+                <div className="relative grid gap-6 md:grid-cols-3">
 
                     {steps.map((step, i) => (
                         <div
                             key={i}
-                            className="relative text-left group transition duration-300 hover:-translate-y-1"
+                            className="group relative transition duration-300 hover:-translate-y-1"
                         >
 
-                            {/* Circle Number */}
-                            <div className="relative z-10 mb-5">
-                                <div className="w-12 h-12 flex items-center justify-center rounded-full 
-                  bg-linear-to-r from-red-500 to-red-400 
-                  text-white font-semibold shadow-md 
-                  group-hover:scale-110 transition">
-                                    {step.num}
-                                </div>
+                            {/* line connector desktop */}
+                            {i !== steps.length - 1 && (
+                                <div className="absolute left-[60px] top-6 hidden h-[1px] w-[calc(100%-20px)] bg-gradient-to-r from-red-500/70 to-transparent md:block" />
+                            )}
 
-                                {/* Glow Effect */}
-                                <div className="absolute inset-0 w-12 h-12 rounded-full bg-red-400 opacity-20 blur-md group-hover:opacity-40 transition"></div>
-                            </div>
+                            {/* card */}
+                            <div className="rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition duration-300 group-hover:border-red-500/30 group-hover:bg-white/[0.07] group-hover:shadow-[0_10px_40px_rgba(0,0,0,0.25)]">
 
-                            {/* Content Card */}
-                            <div className="p-5 rounded-xl border border-gray-100 bg-white shadow-sm group-hover:shadow-lg transition">
-
-                                {/* Title */}
-                                <h3 className="font-semibold mb-2 text-gray-900">
-                                    {step.title}
-                                </h3>
-
-                                {/* Description */}
-                                <p className="text-sm text-gray-500 leading-relaxed">
+                                <p className="text-sm leading-7 text-gray-400">
                                     {step.desc}
                                 </p>
-
                             </div>
 
                         </div>
                     ))}
                 </div>
-
             </div>
         </section>
     );

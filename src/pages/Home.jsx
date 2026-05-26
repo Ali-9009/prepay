@@ -106,35 +106,37 @@ export default function Home() {
 
       <WhySection />
 
-      <section className="py-12 px-6 md:px-8  ">
-        <div className="max-w-3xl mx-auto flex flex-col md:flex-row items-center gap-12">
-          {/* Left Text */}
-          <div className="flex-1">
-            <h2 className="secondary-heading">
+      <section className="py-12 px-6 md:px-8">
+        <div className="max-w-5xl mx-auto grid md:grid-cols-2 items-center gap-10">
+
+          {/* Left Content */}
+          <div>
+            <h2 className="secondary-heading mb-4">
               A track record built one
               refill at a time
             </h2>
+
             <p className="text-[#111] leading-relaxed mb-4">
               Since 2016, we've processed over 500 million recharges for
               customers across the globe. Every month, roughly 300,000 people
               trust us to keep their phones connected — and the phones of the
               people they care about.
             </p>
-            <p className="text-[#111] text-sm leading-relaxed">
+
+            <p className="text-[#111] text-sm leading-relaxed mb-5">
               We've been doing this long enough to know what matters: speed,
-              reliability, and not making things complicated. That's what we've
-              focused on from day one.
+              reliability, and keeping things simple.
             </p>
 
-            <Button text="Get Started its free" className="mt-3" />
+            <Button text="Get Started It's Free" />
           </div>
 
           {/* Right Character */}
-          <div className="shrink-0">
+          <div className="relative flex justify-center">
             <img
-              src="/images/features-show-character.png"
-              alt="Features show mascot"
-              className="w-76 md:w-72 drop-shadow-xl"
+              src="/images/h-4.png"
+              alt="Features mascot"
+              className="rounded-xl"
             />
           </div>
         </div>

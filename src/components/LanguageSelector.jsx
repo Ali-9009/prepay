@@ -24,7 +24,7 @@ function LanguageSelector() {
 
             {/* Dropdown */}
             {open && (
-                <div className="absolute right-0 mt-2 w-40 bg-white rounded-xl shadow-lg overflow-hidden z-50">
+                <div className="absolute right-0 mt-2 w-32 bg-white rounded-xl shadow-lg overflow-hidden p-2 z-50">
                     {languages.map((item, i) => (
                         <div
                             key={i}
@@ -32,10 +32,10 @@ function LanguageSelector() {
                                 setLang(item.code);
                                 setOpen(false);
                             }}
-                            className={`flex items-center gap-3 px-4 py-3 cursor-pointer text-sm
+                            className={`rounded gap-2 flex items-center px-4 py-3 cursor-pointer text-sm
               ${lang === item.code
-                                    ? "bg-yellow-400 text-black"
-                                    : "hover:bg-gray-100"
+                                    ? "bg-red-100 text-black"
+                                    : ""
                                 }`}
                         >
                             <img src={item.flag} className="w-5 h-5 rounded-full" />

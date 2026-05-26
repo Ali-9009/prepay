@@ -119,24 +119,26 @@ export default function WhySection() {
                             </p>
                         </div>
                     </div>
+
+                    <div className="max-w-6xl mx-auto text-black rounded-2xl ">
+                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                            {stats.map((item, index) => (
+                                <div key={index}
+                                    className="bg-[#111] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition">
+                                    <h3 className="text-xl font-semibold mb-2 text-white">
+                                        <Counter target={item.value} suffix={item.suffix} />
+                                    </h3>
+                                    <p className="text-sm text-gray-400 mt-1">
+                                        {item.label}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </section>
 
-            <div className="bg-white max-w-6xl mx-auto text-black rounded-2xl p-8">
-                <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
-                    {stats.map((item, index) => (
-                        <div key={index}
-                            className="p-6 rounded-2xl border border-gray-200 hover:shadow-md transition">
-                            <h3 className="text-3xl font-bold">
-                                <Counter target={item.value} suffix={item.suffix} />
-                            </h3>
-                            <p className="text-sm text-gray-400 mt-1">
-                                {item.label}
-                            </p>
-                        </div>
-                    ))}
-                </div>
-            </div>
+           
         </>
     );
 }

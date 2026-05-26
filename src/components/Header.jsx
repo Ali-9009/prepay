@@ -50,7 +50,7 @@ export default function Header() {
       </div>
 
       {/* mobile */}
-      <div className="md:hidden">
+      <div className="sticky top-0 bg-white z-8 md:hidden">
         <div className="px-4 py-2 flex items-center justify-between ">
           <NavLink to="/" className="shrink-0  ">
             <img src="/images/logo.png" className="w-25" alt="" />
@@ -77,7 +77,7 @@ export default function Header() {
         </div>
 
         <div className="w-full overflow-x-auto scrollbar-hide">
-          <div className="flex items-center gap-6 px-4 min-w-max">
+          <div className="flex items-center justify-center gap-6 px-4 min-w-max">
             {navLinks.map((link, idx) => {
               const Icon = link.icon;
               return (
@@ -102,7 +102,7 @@ export default function Header() {
       </div>
 
       {/* desktop */}
-      <div className="bg-[#fcfbfb] border-b border-[#e0e0e0] hidden lg:block">
+      <div className="sticky top-0 z-10 bg-[#fcfbfb] border-b border-[#e0e0e0] hidden lg:block">
         <nav className="flex items-center justify-between px-6 h-16 max-w-7xl mx-auto">
 
           {/* Logo */}

@@ -1,5 +1,9 @@
-import { useState } from "react";
+
 import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { useEffect, useState } from "react";
+import "swiper/css";
+
 
 const plans = [
     {
@@ -59,8 +63,19 @@ export default function Plans({ selectedPlan: externalSelectedPlan, onSelectPlan
         }
     };
 
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkScreen = () => setIsMobile(window.innerWidth < 768);
+
+        checkScreen();
+        window.addEventListener("resize", checkScreen);
+
+        return () => window.removeEventListener("resize", checkScreen);
+    }, []);
+
     return (
-        <div className="">
+        <div className="pb-20 md:pb-0">
             <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-6">
 
                 {/* OVERLAY */}
@@ -73,8 +88,11 @@ export default function Plans({ selectedPlan: externalSelectedPlan, onSelectPlan
 
                 {/* ================= LEFT FILTER ================= */}
                 <div
-                    className={`fixed md:static bg-white top-0 left-0 h-full md:h-fit w-70 md:w-auto border border-gray-300 shadow-md rounded-xl p-5 z-50 transition-transform duration-300 overflow-y-auto
-                    ${isOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
+                    className={`fixed md:static bg-white top-0 left-0 h-full md:h-fit w-70 md:w-auto rounded-xl p-5 z-50 transition-transform duration-300 overflow-y-auto
+  ${isOpen
+                            ? "translate-x-0 border border-gray-300 shadow-md"
+                            : "-translate-x-[110%] border-0 shadow-none md:translate-x-0 md:border md:border-gray-300 md:shadow-md"
+                        }`}
                 >
 
                     {/* HEADER */}
@@ -141,110 +159,61 @@ export default function Plans({ selectedPlan: externalSelectedPlan, onSelectPlan
                 </div>
 
                 {/* ================= RIGHT ================= */}
-                <div className="md:col-span-3">
+                <div className="min-w-0 md:col-span-3">
 
                     {/* HEADER */}
-                    <div className="flex items-center justify-between mb-4">
+                    <div className="mb-4 flex items-center justify-between">
+                        <p className="text-sm text-gray-500">
+                            {plans.length} plans available
+                        </p>
 
-                        {/* LEFT SIDE */}
-                        <div className="flex items-center gap-3">
-                            <button
-                                onClick={() => setIsOpen(true)}
-                                className="md:hidden text-xl"
-                            >
-                                ☰
-                            </button>
-
-                            <p className="text-sm text-gray-500">
-                                {plans.length} plans available
-                            </p>
-                        </div>
-
-                        {/* RIGHT */}
-                        <select className="text-sm border border-gray-300 rounded-md px-3 py-1 bg-white">
+                        <select className="rounded-md border border-gray-300 bg-white px-3 py-1 text-sm">
                             <option>Sort: Featured</option>
                         </select>
                     </div>
 
-                    {/* PLANS */}
-                    <div className="space-y-4">
-                        {plans.map((plan) => (
-                            <div
-                                key={plan.id}
-                                onClick={() => handleSelectPlan(plan.id)}
-                                className={`relative bg-white border border-gray-300 shadow-md rounded-xl p-8 transition cursor-pointer
-                                ${selectedPlan === plan.id ? "ring-1 ring-red-500" : ""}`}
-                            >
-                                {plan.popular && (
-                                    <div className="absolute top-0 right-5 bg-red-500 text-white text-xs font-bold px-3 py-1 rounded-b-xl">
-                                        MOST POPULAR
-                                    </div>
-                                )}
-
-                                <div className="flex justify-between items-start mb-3">
-                                    <div>
-                                        <div className="flex items-center gap-2 text-xs mb-3">
-                                            <span className="text-gray-500 font-bold text-xs">
-                                                {plan.carrier}
-                                            </span>
-                                            {plan.tag && (
-                                                <span className="bg-blue-100 font-bold text-blue-600 px-2 py-1 rounded-full text-xs">
-                                                    {plan.tag}
-                                                </span>
-                                            )}
-                                        </div>
-
-                                        <h3 className="font-bold text-lg leading-tight">
-                                            {plan.title}
-                                        </h3>
-                                    </div>
-
-                                    <div className="text-right">
-                                        <p className="text-4xl font-bold">
-                                            <span className="text-xl font-semibold align-top">$</span>{plan.price}
-                                        </p>
-                                        <p className="text-xs font-bold text-gray-500">/month</p>
-                                    </div>
-                                </div>
-
-                                <div className="flex md:flex-row flex-col items-start justify-between">
-                                    <ul className="text-sm font-semibold text-gray-600 space-y-1 mb-4">
-                                        {plan.features.map((f, i) => (
-                                            <li key={i} className="flex gap-2">
-                                                <span className="text-green-500">✔</span>
-                                                {f}
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                    <div className="flex justify-end">
-                                        <Link
-                                            to="/Activation"
-                                            onClick={(e) => {
-                                                e.stopPropagation();
-                                                handleSelectPlan(plan.id);
-                                            }}
-                                            className={`inline-block px-5 py-2 rounded-lg text-sm font-medium ${selectedPlan === plan.id
-                                                    ? "bg-green-600 text-white"
-                                                    : plan.popular
-                                                        ? "bg-red-500 text-white"
-                                                        : "bg-black text-white"
-                                                }`}
-                                        >
-                                            {selectedPlan === plan.id ? "Selected" : "Select Plan"}
-                                        </Link>
-                                    </div>
-                                </div>
-                            </div>
-                        ))}
-                    </div>
+                    {isMobile ? (
+                        <Swiper
+                            spaceBetween={16}
+                            slidesPerView={1.08}
+                            className="w-full"
+                        >
+                            {plans.map((plan) => (
+                                <SwiperSlide key={plan.id}>
+                                    <PlanCard
+                                        plan={plan}
+                                        selectedPlan={selectedPlan}
+                                        handleSelectPlan={handleSelectPlan}
+                                    />
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
+                    ) : (
+                        <div className="space-y-4">
+                            {plans.map((plan) => (
+                                <PlanCard
+                                    key={plan.id}
+                                    plan={plan}
+                                    selectedPlan={selectedPlan}
+                                    handleSelectPlan={handleSelectPlan}
+                                />
+                            ))}
+                        </div>
+                    )}
                 </div>
             </div>
+
+            <button
+                onClick={() => setIsOpen(true)}
+                className="fixed bottom-4 left-1/2 z-40 flex w-[calc(100%-32px)] -translate-x-1/2 items-center justify-center rounded-xl bg-black py-3 text-sm font-semibold text-white shadow-lg md:hidden"
+            >
+                Filter Plans
+            </button>
         </div>
     );
 }
 
-/* ================= FILTER ================= */
+
 function FilterSection({ title, options }) {
     const [selected, setSelected] = useState(0);
 
@@ -299,6 +268,80 @@ function FilterSection({ title, options }) {
                         </label>
                     );
                 })}
+            </div>
+        </div>
+    );
+}
+
+
+function PlanCard({ plan, selectedPlan, handleSelectPlan }) {
+    return (
+        <div
+            onClick={() => handleSelectPlan(plan.id)}
+            className={`relative cursor-pointer rounded-xl border border-gray-300 bg-white p-6 shadow-md transition md:p-8 ${selectedPlan === plan.id ? "ring-1 ring-red-500" : ""
+                }`}
+        >
+            {plan.popular && (
+                <div className="absolute right-5 top-0 rounded-b-xl bg-red-500 px-3 py-1 text-xs font-bold text-white">
+                    MOST POPULAR
+                </div>
+            )}
+
+            <div className="mb-3 flex items-start justify-between">
+                <div>
+                    <div className="mb-3 flex items-center gap-2 text-xs">
+                        <span className="text-xs font-bold text-gray-500">
+                            {plan.carrier}
+                        </span>
+
+                        {plan.tag && (
+                            <span className="rounded-full bg-blue-100 px-2 py-1 text-xs font-bold text-blue-600">
+                                {plan.tag}
+                            </span>
+                        )}
+                    </div>
+
+                    <h3 className="text-lg font-bold leading-tight">
+                        {plan.title}
+                    </h3>
+                </div>
+
+                <div className="text-right">
+                    <p className="text-4xl font-bold">
+                        <span className="align-top text-xl font-semibold">$</span>
+                        {plan.price}
+                    </p>
+                    <p className="text-xs font-bold text-gray-500">/month</p>
+                </div>
+            </div>
+
+            <div className="flex flex-col items-start justify-between md:flex-row">
+                <ul className="mb-4 space-y-1 text-sm font-semibold text-gray-600">
+                    {plan.features.map((f, i) => (
+                        <li key={i} className="flex gap-2">
+                            <span className="text-green-500">✔</span>
+                            {f}
+                        </li>
+                    ))}
+                </ul>
+
+                <div className="flex w-full justify-end md:w-auto">
+                    <Link
+                        to="/Activation"
+                        onClick={(e) => {
+                            e.stopPropagation();
+                            handleSelectPlan(plan.id);
+                        }}
+                        className={`inline-block rounded-lg px-5 py-2 text-sm font-medium ${selectedPlan === plan.id
+                            ? "bg-green-600 text-white"
+                            : plan.popular
+                                ? "bg-red-500 text-white"
+                                : "bg-black text-white"
+                            }`}
+                    >
+                        {selectedPlan === plan.id ? "Selected" : "Select Plan"}
+                    </Link>
+                </div>
             </div>
         </div>
     );
