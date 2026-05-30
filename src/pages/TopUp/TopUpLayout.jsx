@@ -1,4 +1,4 @@
-import { useLocation, useNavigate, Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Shield, Zap, Globe } from "lucide-react";
 import {
   RadioTower,
@@ -7,61 +7,90 @@ import {
   ThumbsUp,
   ChevronRight,
 } from "lucide-react";
+import { MapPin, ChevronDown } from "lucide-react";
+import CountrySelect from "../../components/CountrySelect";
+
 export default function TopUpLayout({
-  title,
   image,
   carriers,
   extraComponent,
 }) {
   const navigate = useNavigate();
-  const location = useLocation();
+  
 
   return (
     <>
       {/* DESKTOP */}
-      <section className="py-12 hidden md:flex">
-        <div className="max-w-5xl mx-auto px-6 grid md:grid-cols-2 items-center gap-10">
+      <section className="py-16 hidden md:flex">
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
           {/* LEFT */}
           <div>
-            <h1 className="text-4xl lg:text-5xl font-semibold mb-3">{title}</h1>
+            <h1 className="text-5xl font-bold tracking-tight">
+              Mobile <span className="text-red-500">top-up</span>
+            </h1>
 
-            <p className="text-gray-600 text-lg">
+            <p className="text-gray-500 text-lg mt-4">
               Keep them close, no matter the distance
             </p>
 
-            {/* Country box */}
-            <div className="mt-6 bg-gray-50 rounded-xl p-5 w-85 border border-gray-300 shadow-md">
-              <label className="text-sm text-gray-700 block mb-2">
-                Country of use
-              </label>
+            {/* Red line */}
+            <div className="w-14 h-1 bg-red-500 rounded-full mt-6"></div>
 
-              <select
-                value={location.pathname}
-                onChange={(e) => navigate(e.target.value)}
-                className="w-full bg-white rounded-lg border border-gray-200 px-3 py-2"
-              >
-                <option value="/TopUpMobile">United States</option>
-                <option value="/InternationalTopUp">International</option>
-              </select>
+            {/* Card */}
+            <div className="mt-8 bg-white rounded-[28px] shadow-lg border border-gray-100 p-6 max-w-xl">
+              {/* Label */}
+              <div className="flex items-center gap-3 mb-5">
+                <div className="w-11 h-11 rounded-full bg-red-50 flex items-center justify-center">
+                  <MapPin className="w-5 h-5 text-red-500" />
+                </div>
 
-              {/* feature row */}
-              <div className="bg-red-100 p-4 rounded flex items-center justify-between mt-4 text-xs text-gray-600">
-                <div className="flex items-center gap-1">
-                  <Shield size={16} /> Secure
-                </div>
-                <div className="flex items-center gap-1">
-                  <Zap size={16} /> Instant
-                </div>
-                <div className="flex items-center gap-1">
-                  <Globe size={16} /> Global
+                <span className="font-semibold text-xl text-gray-800">
+                  Country of use
+                </span>
+              </div>
+
+              {/* Custom Select */}
+              <div className="relative">
+                <CountrySelect />
+              </div>
+
+              {/* Features */}
+              <div className="mt-6 bg-red-50 rounded-2xl px-5 py-4">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="flex items-start gap-3">
+                    <ShieldCheck
+                      size={22}
+                      className="text-red-500 shrink-0 mt-1"
+                    />
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Secure</h4>
+                      <p className="text-xs text-gray-500">Safe transactions</p>
+                    </div>
+                  </div>
+
+                  <div className="border-x border-red-200 px-4 flex items-start gap-3">
+                    <Zap size={22} className="text-red-500 shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Instant</h4>
+                      <p className="text-xs text-gray-500">Top up in seconds</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-start gap-3">
+                    <Globe size={22} className="text-red-500 shrink-0 mt-1" />
+                    <div>
+                      <h4 className="font-semibold text-gray-900">Global</h4>
+                      <p className="text-xs text-gray-500">200+ countries</p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* RIGHT */}
+          {/* RIGHT IMAGE */}
           <div className="flex justify-end">
-            <img src={image} alt="hero" className="drop-shadow-lg" />
+            <img src={image} alt="hero" className="max-w-md drop-shadow-2xl" />
           </div>
         </div>
       </section>

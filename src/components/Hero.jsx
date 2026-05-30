@@ -13,7 +13,17 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { usCarriers } from "../data/carriers";
 import { Link } from "react-router-dom";
-import Button from "../components/Gbtn"
+import Button from "../components/Gbtn";
+import { Clapperboard, Utensils, Plane } from "lucide-react";
+
+const categories = [
+  { name: "Mobile", icon: Smartphone },
+  { name: "Streaming", icon: Clapperboard },
+  { name: "Gaming", icon: Gamepad2 },
+  { name: "Shopping", icon: ShoppingBag },
+  { name: "Food", icon: Utensils },
+  { name: "Travel", icon: Plane },
+];
 
 export default function Hero() {
   return (
@@ -29,9 +39,7 @@ export default function Hero() {
               All in one place.
             </h1>
 
-            <p className="text-xs mt-2">
-              Fast. Secure. Reliable.
-            </p>
+            <p className="text-xs mt-2">Fast. Secure. Reliable.</p>
             <Button text="Top-up Now" className="mt-4" />
           </div>
 
@@ -132,7 +140,7 @@ export default function Hero() {
               </p>
             </div>
 
-            <Button className="mt-4" text="Buy Now"/>
+            <Button className="mt-4" text="Buy Now" />
           </div>
         </div>
       </div>
@@ -145,16 +153,20 @@ export default function Hero() {
 
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
             {[
-              "Target",
-              "Walmart",
-              "Netflix",
-              "Uber",
-              "Starbucks",
-              "DoorDash",
+              { name: "Target", img: "/icons/target.webp" },
+              { name: "Walmart", img: "/icons/walmart.webp" },
+              { name: "Netflix", img: "/icons/netflix.webp" },
+              { name: "Uber", img: "/icons/uber.webp" },
+              { name: "Starbucks", img: "/icons/starbucks.webp" },
+              { name: "DoorDash", img: "/icons/doordash.webp" },
             ].map((item) => (
-              <div key={item} className="text-center">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-xl mx-auto " />
-                <p className="text-[10px] sm:text-[11px] mt-1">{item}</p>
+              <div key={item.name} className="text-center">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-12 h-12 sm:w-12 sm:h-12 mx-auto rounded-xl object-cover"
+                />
+                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
               </div>
             ))}
           </div>
@@ -165,19 +177,19 @@ export default function Hero() {
           <h3 className="font-semibold mb-4">Popular Categories</h3>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-            {[
-              "Mobile",
-              "Streaming",
-              "Gaming",
-              "Shopping",
-              "Food",
-              "Travel",
-            ].map((item) => (
-              <div key={item} className="text-center">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-xl mx-auto" />
-                <p className="text-[10px] sm:text-[11px] mt-1">{item}</p>
-              </div>
-            ))}
+            {categories.map((item) => {
+              const Icon = item.icon;
+
+              return (
+                <div key={item.name} className="text-center">
+                  <div className="w-12 h-12 mx-auto rounded-xl bg-red-100 flex items-center justify-center">
+                    <Icon className="w-5 h-5 text-red-500" />
+                  </div>
+
+                  <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+                </div>
+              );
+            })}
           </div>
         </div>
 
@@ -186,14 +198,23 @@ export default function Hero() {
           <h3 className="font-semibold mb-4">Streaming & Entertainment</h3>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-            {["Hulu", "HBO", "Disney", "Spotify", "YouTube", "Prime"].map(
-              (item) => (
-                <div key={item} className="text-center">
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-xl mx-auto" />
-                  <p className="text-[10px] sm:text-[11px] mt-1">{item}</p>
-                </div>
-              ),
-            )}
+            {[
+              { name: "Hulu", img: "/icons/hulu.webp" },
+              { name: "HBO", img: "/icons/hbo.webp" },
+              { name: "Disney", img: "/icons/disney.webp" },
+              { name: "Spotify", img: "/icons/spotify.webp" },
+              { name: "YouTube", img: "/icons/youtube.webp" },
+              { name: "Prime", img: "/icons/prime.webp" },
+            ].map((item) => (
+              <div key={item.name} className="text-center">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-xl object-cover"
+                />
+                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -204,17 +225,26 @@ export default function Hero() {
           <h3 className="font-semibold mb-4">Top Game Cards</h3>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-            {["PS", "Xbox", "Nintendo", "Roblox", "Steam", "Google"].map(
-              (item) => (
-                <div
-                  key={item}
-                  className="text-center flex flex-col items-center"
-                >
-                  <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-xl" />
-                  <p className="text-[10px] sm:text-[11px] mt-1">{item}</p>
-                </div>
-              ),
-            )}
+            {[
+              { name: "PS", img: "/icons/ps5.webp" },
+              { name: "Xbox", img: "/icons/xbox.webp" },
+              { name: "Nintendo", img: "/icons/nintendo.webp" },
+              { name: "Roblox", img: "/icons/roblox.webp" },
+              { name: "Steam", img: "/icons/steam.webp" },
+              { name: "Google", img: "/icons/google.webp" },
+            ].map((item) => (
+              <div
+                key={item.name}
+                className="text-center flex flex-col items-center"
+              >
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover"
+                />
+                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+              </div>
+            ))}
           </div>
         </div>
 
@@ -224,19 +254,23 @@ export default function Hero() {
 
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
             {[
-              "Visa",
-              "Mastercard",
-              "PayPal",
-              "Apple Pay",
-              "Amex",
-              "Gift Cards",
+              { name: "Visa", img: "/icons/visa.webp" },
+              { name: "Mastercard", img: "/icons/mastercard.webp" },
+              { name: "PayPal", img: "/icons/paypal.webp" },
+              { name: "Apple Pay", img: "/icons/applepay.webp" },
+              { name: "Amex", img: "/icons/amex.webp" },
+              { name: "Gift Cards", img: "/icons/google.webp" },
             ].map((item) => (
               <div
-                key={item}
+                key={item.name}
                 className="text-center flex flex-col items-center"
               >
-                <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gray-100 rounded-xl" />
-                <p className="text-[10px] sm:text-[11px] mt-1">{item}</p>
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain"
+                />
+                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
               </div>
             ))}
           </div>
