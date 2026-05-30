@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
 import PopularServices from "../components/PopularServices";
-import Button from "../components/Gbtn"
+import Button from "../components/Gbtn";
 import WhySection from "../components/WhySection";
 import Steps from "../components/Steps";
-import FAQ from "./Faq"
-
+import FAQ from "./Faq";
+import Hero from "../components/Hero";
 
 const serviceCards = [
   {
@@ -40,21 +40,20 @@ const serviceCards = [
 export default function Home() {
   return (
     <>
-      <section className="pt-12 px-6 md:px-8 overflow-hidden">
+      <Hero />
+      
+      <section className="hidden pt-12 px-6 md:px-8 overflow-hidden">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 grid-row-2 items-center justify-center">
           {/* Left Text */}
           <div className="max-w-xl">
             <h1 className="text-3xl lg:text-4xl xl:text-5xl font-semibold text-[#111] leading-tight mb-3">
               Your phone.
               <br />
-              <span className="text-(--primary-color)">
-                Always ready.
-              </span>
+              <span className="text-(--primary-color)">Always ready.</span>
             </h1>
             <p className="text-[#111] text-base leading-relaxed mb-8 max-w-md">
-              Activate a new device, top up your minutes, or pay
-              someone else's bill done in seconds. No account
-              required, no waiting on hold.
+              Activate a new device, top up your minutes, or pay someone else's
+              bill done in seconds. No account required, no waiting on hold.
             </p>
             <div className="flex items-center gap-4 flex-wrap">
               <Button to="/ActivationFlow" text="Activate a Device" />
@@ -108,12 +107,10 @@ export default function Home() {
 
       <section className="py-12 px-6 md:px-8">
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 items-center gap-10">
-
           {/* Left Content */}
           <div>
             <h2 className="secondary-heading mb-4">
-              A track record built one
-              refill at a time
+              A track record built one refill at a time
             </h2>
 
             <p className="text-[#111] leading-relaxed mb-4">
