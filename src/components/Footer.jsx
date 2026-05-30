@@ -25,7 +25,7 @@ function Footer() {
   ];
 
   return (
-    <footer className="relative bg-linear-to-b from-white via-gray-50 to-white border-t border-gray-200 mt-20">
+    <footer className="relative bg-linear-to-b from-white via-gray-50 to-white border-t border-gray-200 mt-8">
       <div className="relative z-10">
         {/* Main Footer */}
         <div className="max-w-6xl mx-auto px-6 md:px-10 py-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">

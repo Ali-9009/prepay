@@ -9,7 +9,7 @@ export default function Button({
     state, // add this
 }) {
 
-    const styles = `inline-block px-6 py-3 text-sm rounded-xl border border-[#BEBEBE]
+    const styles = `inline-block px-6 py-3 text-sm rounded-xl
   bg-(--black-color) text-white hover:bg-(--primary-color) hover:text-white
   transition-all duration-300 ${className}`;
 

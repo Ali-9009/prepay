@@ -13,28 +13,26 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { usCarriers } from "../data/carriers";
 import { Link } from "react-router-dom";
+import Button from "../components/Gbtn"
 
 export default function Hero() {
   return (
     <div className="p-4 rounded-[28px] w-full max-w-7xl mx-auto">
       {/* Top */}
-      <div className="bg-linear-to-r from-[#ede7ff] to-[#f7f7ff] rounded-xl p-5">
+      <div className="bg-linear-to-r from-[#f16b6b] to-[#f7f7ff] rounded-xl p-5">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
           {/* Left */}
-          <div className="w-full lg:w-auto text-center lg:text-left">
+          <div className="w-full text-white lg:w-auto text-center lg:text-left">
             <h1 className="font-bold text-2xl leading-tight">
               Top-Up. Shop. Stream.
               <br />
               All in one place.
             </h1>
 
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs mt-2">
               Fast. Secure. Reliable.
             </p>
-
-            <button className="mt-4 bg-purple-600 text-white px-5 py-2 rounded-full">
-              Top-up Now
-            </button>
+            <Button text="Top-up Now" className="mt-4" />
           </div>
 
           {/* Center */}
@@ -57,7 +55,7 @@ export default function Hero() {
                   key={item}
                   className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap ${
                     item === "All"
-                      ? "bg-purple-600 text-white"
+                      ? "bg-(--primary-color) text-white"
                       : "bg-white text-gray-700"
                   }`}
                 >
@@ -74,7 +72,7 @@ export default function Hero() {
 
           {/* Right */}
           <div className="shrink-0">
-            <div className="w-45 h-30 rounded-3xl bg-purple-500" />
+            <img src="/images/banner.png" alt="" className="w-50 h-auto" />
           </div>
         </div>
       </div>
@@ -134,9 +132,7 @@ export default function Hero() {
               </p>
             </div>
 
-            <button className="bg-black text-white rounded-full py-2 px-4 mt-3 w-fit">
-              Buy Now
-            </button>
+            <Button className="mt-4" text="Buy Now"/>
           </div>
         </div>
       </div>
@@ -247,17 +243,14 @@ export default function Hero() {
         </div>
 
         {/* Promo Card */}
-        <div className="bg-[#17174e] text-white rounded-xl p-6 flex flex-col justify-between">
+        <div className="bg-(--primary-color) text-white rounded-xl p-6 flex flex-col justify-between">
           <div>
             <h2 className="text-xl font-bold">Give more. Get more.</h2>
 
             <p className="text-sm opacity-80 mt-2">
               Explore eGift cards for every celebration.
             </p>
-
-            <button className="mt-4 bg-purple-600 px-4 py-2 rounded-full">
-              Explore now
-            </button>
+            <Button text="Explore Now" className="mt-4" />
           </div>
         </div>
       </div>

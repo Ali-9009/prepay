@@ -7,7 +7,7 @@ export default function TopUpMobile() {
     <>
       <TopUpLayout
         title="Mobile top-up"
-        image="/images/usa.png"
+        image="/images/map.png"
         carriers={usCarriers}
       />
       <FAQ />
