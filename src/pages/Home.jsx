@@ -1,5 +1,5 @@
 import { NavLink } from "react-router-dom";
-import PopularServices from "../components/PopularServices";
+// import PopularServices from "../components/PopularServices";
 import Button from "../components/Gbtn";
 import WhySection from "../components/WhySection";
 import Steps from "../components/Steps";
@@ -72,7 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      <PopularServices />
+      {/* <PopularServices /> */}
 
       <section className="py-12 px-6 md:px-8">
         <div className="text-center mb-10">
@@ -131,7 +131,7 @@ export default function Home() {
           {/* Right Character */}
           <div className="relative flex justify-center">
             <img
-              src="/images/h-4.png"
+              src="/images/h-5.png"
               alt="Features mascot"
               className="rounded-xl"
             />

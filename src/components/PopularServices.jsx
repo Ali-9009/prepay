@@ -10,11 +10,11 @@ const filterTabs = [
         label: "All",
         icon: <LayoutGrid size={14} />,
     },
-    {
-        id: "topup",
-        label: "Mobile Top-up",
-        icon: <Smartphone size={14} />,
-    },
+    // {
+    //     id: "topup",
+    //     label: "Mobile Top-up",
+    //     icon: <Smartphone size={14} />,
+    // },
     {
         id: "shopping",
         label: "Shopping",

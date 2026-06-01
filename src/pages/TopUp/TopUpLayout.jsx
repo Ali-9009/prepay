@@ -55,7 +55,7 @@ export default function TopUpLayout({
               </div>
 
               {/* Features */}
-              <div className="mt-6 bg-red-50 rounded-2xl px-5 py-4">
+              <div className="mt-6 bg-red-50 rounded-2xl px-3 py-4">
                 <div className="grid grid-cols-3 gap-4">
                   <div className="flex items-start gap-3">
                     <ShieldCheck
@@ -68,7 +68,7 @@ export default function TopUpLayout({
                     </div>
                   </div>
 
-                  <div className="border-x border-red-200 px-4 flex items-start gap-3">
+                  <div className="border-x border-red-200 px-1 flex items-start gap-2">
                     <Zap size={22} className="text-red-500 shrink-0 mt-1" />
                     <div>
                       <h4 className="font-semibold text-gray-900">Instant</h4>

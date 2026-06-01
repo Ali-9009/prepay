@@ -34,23 +34,35 @@ export default function Hero() {
           {/* Left */}
           <div className="w-full text-white lg:w-auto text-center lg:text-left">
             <h1 className="font-bold text-2xl leading-tight">
-              Top-Up. Shop. Stream.
+              Stay Connected
               <br />
-              All in one place.
+              Anywhere with eSIM.
             </h1>
 
-            <p className="text-xs mt-2">Fast. Secure. Reliable.</p>
-            <Button text="Top-up Now" className="mt-4" />
+            <p className="text-xs mt-2">
+              Instant activation. Global coverage.
+            </p>
+
+            <Button to="/ActivationFlow" text="Get Started" className="mt-4" />
           </div>
 
           {/* Center */}
           <div className="flex-1 w-full max-w-4xl">
-            <input
-              placeholder="Search for carriers or brands..."
+            <div className="flex items-center gap-2">
+              <input
+                placeholder="Check Your Device Compatibility..."
+                className="flex-1 h-12 rounded-full px-5 text-sm bg-white border border-gray-200 outline-none"
+              />
+
+              <Button className="rounded-full!" text="Check" />
+            </div>
+            {/* <input
+              placeholder="Check Your Device Compatibility..."
               className="w-full h-12 rounded-full px-5 text-sm bg-white border border-gray-200 outline-none"
             />
+            <Button text="check"/> */}
 
-            <div className="flex items-center justify-center gap-2 mt-4 flex-wrap lg:flex-nowrap">
+            {/* <div className="flex items-center justify-center gap-2 mt-4 flex-wrap lg:flex-nowrap">
               {[
                 "All",
                 "Mobile Top-up",
@@ -75,7 +87,7 @@ export default function Hero() {
                   {item}
                 </button>
               ))}
-            </div>
+            </div> */}
           </div>
 
           {/* Right */}
@@ -91,14 +103,20 @@ export default function Hero() {
           <div className="flex items-center justify-between mb-4">
             <h2 className="font-semibold">Top Brands</h2>
 
-            <div className="flex items-center gap-2">
-              <button className="brands-prev w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
-                <ChevronLeft size={16} />
+            <div className="flex items-center gap-4">
+              <button className="text-sm font-medium text-primary hover:underline">
+                View All
               </button>
 
-              <button className="brands-next w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
-                <ChevronRight size={16} />
-              </button>
+              <div className="flex items-center gap-2">
+                <button className="brands-prev w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                  <ChevronLeft size={16} />
+                </button>
+
+                <button className="brands-next w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
+                  <ChevronRight size={16} />
+                </button>
+              </div>
             </div>
           </div>
 
@@ -118,63 +136,78 @@ export default function Hero() {
           >
             {usCarriers.map((carrier) => (
               <SwiperSlide key={carrier.name}>
-                <Link to={carrier.link} state={{ carrier }}>
-                  <img
-                    src={carrier.logo}
-                    alt={carrier.name}
-                    className="w-40 hover:scale-105 transition"
-                  />
-                </Link>
+                <div className="flex flex-col items-center border border-gray-300 p-2 rounded">
+                  <Link to={carrier.link} state={{ carrier }}>
+                    <img
+                      src={carrier.logo}
+                      alt={carrier.name}
+                      className="w-40 hover:scale-105 transition"
+                    />
+                  </Link>
+
+                  <Link to={carrier.link} state={{ carrier }}>
+                    <Button
+                      text="Shop Now"
+                      className="mt-2"
+                    />
+                  </Link>
+                </div>
               </SwiperSlide>
             ))}
           </Swiper>
         </div>
 
         <div className="lg:col-span-3">
-          <div className="h-full rounded-xl bg-linear-to-r from-[#ede7ff] to-[#f7f7ff] p-5 flex flex-col justify-center">
-            <div>
-              <h3 className="text-2xl font-bold mt-2">Amazon</h3>
+          <div className="relative h-full overflow-hidden rounded-2xl bg-(--primary-color) p-6 text-white flex flex-col justify-center">
 
-              <p className="text-sm text-gray-600 mt-2">
-                Shop millions of products with Amazon Gift Cards.
+            <div className="relative z-10 max-w-sm">
+              <h3 className="text-xl font-bold leading-tight">
+                Get Connected in Minutes
+              </h3>
+
+              <p className="mt-2 text-sm text-white/80">
+                Activate your eSIM instantly and enjoy data.
               </p>
-            </div>
 
-            <Button className="mt-4" text="Buy Now" />
+              <div className="mt-2 flex items-center gap-3">
+                <Button
+                  text="Activate Now"
+                  className="hover:bg-black!"
+                  to="/ActivationFlow"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       {/* Lower Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {/* Trending Gifts */}
-        <div className="border border-gray-200 shadow rounded-xl p-4">
-          <h3 className="font-semibold mb-4">Trending Gifts</h3>
+        <div className="bg-(--primary-color) text-white rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <h2 className="text-xl font-bold">Gift Cards Made Easy</h2>
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-            {[
-              { name: "Target", img: "/icons/target.webp" },
-              { name: "Walmart", img: "/icons/walmart.webp" },
-              { name: "Netflix", img: "/icons/netflix.webp" },
-              { name: "Uber", img: "/icons/uber.webp" },
-              { name: "Starbucks", img: "/icons/starbucks.webp" },
-              { name: "DoorDash", img: "/icons/doordash.webp" },
-            ].map((item) => (
-              <div key={item.name} className="text-center">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-12 h-12 sm:w-12 sm:h-12 mx-auto rounded-xl object-cover"
-                />
-                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
-              </div>
-            ))}
+            <p className="text-sm opacity-80 mt-2">
+              Send the perfect gift in seconds.
+            </p>
+
+            <Button
+              text="Shop Gift Cards"
+              className="hover:bg-black! mt-2"
+              to="/gift-cards"
+            />
           </div>
         </div>
 
         {/* Popular Categories */}
         <div className="border border-gray-200 shadow rounded-xl p-4">
-          <h3 className="font-semibold mb-4">Popular Categories</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold">Popular Categories</h3>
+
+            <button className="text-xs text-primary hover:underline">
+              View All
+            </button>
+          </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
             {categories.map((item) => {
@@ -195,7 +228,12 @@ export default function Hero() {
 
         {/* Streaming */}
         <div className="border border-gray-200 shadow rounded-xl p-4">
-          <h3 className="font-semibold mb-4">Streaming & Entertainment</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold">Streaming & Entertainment</h3>
+            <button className="text-xs text-primary hover:underline">
+              View All
+            </button>
+          </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
             {[
@@ -222,7 +260,12 @@ export default function Hero() {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
         {/* Top Game Cards */}
         <div className="border border-gray-200 shadow rounded-xl p-4">
-          <h3 className="font-semibold mb-4">Top Game Cards</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold ">Top Game Cards</h3>
+            <button className="text-xs text-primary hover:underline">
+              View All
+            </button>
+          </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
             {[
@@ -250,7 +293,12 @@ export default function Hero() {
 
         {/* Payments Cards */}
         <div className="border border-gray-200 shadow rounded-xl p-4">
-          <h3 className="font-semibold mb-4">Payments Cards</h3>
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold">Payments Cards</h3>
+            <button className="text-xs text-primary hover:underline">
+              View All
+            </button>
+          </div>
 
           <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
             {[
@@ -276,15 +324,33 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Promo Card */}
-        <div className="bg-(--primary-color) text-white rounded-xl p-6 flex flex-col justify-between">
-          <div>
-            <h2 className="text-xl font-bold">Give more. Get more.</h2>
+        {/* Trending Gifts */}
+        <div className="border border-gray-200 shadow rounded-xl p-4">
+          <div className="flex items-center justify-between mb-4">
+            <h3 className="font-semibold">Trending Gifts</h3>
+            <button className="text-xs text-primary hover:underline">
+              View All
+            </button>
+          </div>
 
-            <p className="text-sm opacity-80 mt-2">
-              Explore eGift cards for every celebration.
-            </p>
-            <Button text="Explore Now" className="mt-4" />
+          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
+            {[
+              { name: "Target", img: "/icons/target.webp" },
+              { name: "Walmart", img: "/icons/walmart.webp" },
+              { name: "Netflix", img: "/icons/netflix.webp" },
+              { name: "Uber", img: "/icons/uber.webp" },
+              { name: "Starbucks", img: "/icons/starbucks.webp" },
+              { name: "DoorDash", img: "/icons/doordash.webp" },
+            ].map((item) => (
+              <div key={item.name} className="text-center">
+                <img
+                  src={item.img}
+                  alt={item.name}
+                  className="w-12 h-12 sm:w-12 sm:h-12 mx-auto rounded-xl object-cover"
+                />
+                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>

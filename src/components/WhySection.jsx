@@ -69,76 +69,73 @@ const features = [
 
 export default function WhySection() {
     return (
-        <>
-            <section className="bg-black text-white py-16 px-6">
-                <div className="max-w-6xl mx-auto">
 
-                    {/* Heading */}
-                    <h2 className="text-3xl lg:text-4xl font-semibold mb-2">
-                        Built around how you actually use your phone
-                    </h2>
+        <section className="bg-black text-white py-16 px-6">
+            <div className="max-w-6xl mx-auto">
 
-                    {/* Subtext */}
-                    <p className="text-gray-400 mb-10">
-                        No gimmicks. Here’s what makes us different.
-                    </p>
+                {/* Heading */}
+                <h2 className="text-3xl lg:text-4xl font-semibold mb-2">
+                    Built around how you actually use your phone
+                </h2>
 
-                    {/* Feature Cards */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-                        {features.map((item, i) => (
-                            <div
-                                key={i}
-                                className="bg-[#111] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition"
-                            >
-                                <h3 className="text-sm font-semibold mb-2">
-                                    {item.title}
+                {/* Subtext */}
+                <p className="text-gray-400 mb-10">
+                    No gimmicks. Here’s what makes us different.
+                </p>
+
+                {/* Feature Cards */}
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
+                    {features.map((item, i) => (
+                        <div
+                            key={i}
+                            className="bg-[#111] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition"
+                        >
+                            <h3 className="text-sm font-semibold mb-2">
+                                {item.title}
+                            </h3>
+                            <p className="text-sm text-gray-400">
+                                {item.desc}
+                            </p>
+                        </div>
+                    ))}
+                </div>
+
+                {/* Highlight Box */}
+                <div className="bg-red-600 rounded-xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-12">
+                    <div>
+                        <p className="font-semibold mb-2">
+                            The most-used prepaid service in the US
+                        </p>
+                        <p className="text-sm text-red-100 max-w-xl">
+                            300,000 people use Hello Prepay every single month to send over
+                            $10 million in wireless credit.
+                        </p>
+                    </div>
+
+                    <div className="bg-(--primary-color) px-6 py-4 rounded-lg text-center">
+                        <p className="text-2xl font-bold">#1</p>
+                        <p className="text-xs text-red-100">
+                            Prepaid Refill Service
+                        </p>
+                    </div>
+                </div>
+
+                <div className="max-w-6xl mx-auto text-black rounded-2xl ">
+                    <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
+                        {stats.map((item, index) => (
+                            <div key={index}
+                                className="bg-[#111] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition">
+                                <h3 className="text-xl font-semibold mb-2 text-white">
+                                    <Counter target={item.value} suffix={item.suffix} />
                                 </h3>
-                                <p className="text-sm text-gray-400">
-                                    {item.desc}
+                                <p className="text-sm text-gray-400 mt-1">
+                                    {item.label}
                                 </p>
                             </div>
                         ))}
                     </div>
-
-                    {/* Highlight Box */}
-                    <div className="bg-red-600 rounded-xl p-6 flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-12">
-                        <div>
-                            <p className="font-semibold mb-2">
-                                The most-used prepaid service in the US
-                            </p>
-                            <p className="text-sm text-red-100 max-w-xl">
-                                300,000 people use Hello Prepay every single month to send over
-                                $10 million in wireless credit.
-                            </p>
-                        </div>
-
-                        <div className="bg-(--primary-color) px-6 py-4 rounded-lg text-center">
-                            <p className="text-2xl font-bold">#1</p>
-                            <p className="text-xs text-red-100">
-                                Prepaid Refill Service
-                            </p>
-                        </div>
-                    </div>
-
-                    <div className="max-w-6xl mx-auto text-black rounded-2xl ">
-                        <div className="grid grid-cols-2 md:grid-cols-3 gap-6 text-center">
-                            {stats.map((item, index) => (
-                                <div key={index}
-                                    className="bg-[#111] border border-gray-800 rounded-xl p-5 hover:border-gray-700 transition">
-                                    <h3 className="text-xl font-semibold mb-2 text-white">
-                                        <Counter target={item.value} suffix={item.suffix} />
-                                    </h3>
-                                    <p className="text-sm text-gray-400 mt-1">
-                                        {item.label}
-                                    </p>
-                                </div>
-                            ))}
-                        </div>
-                    </div>
                 </div>
-            </section>
-
-           
-        </>
+            </div>
+        </section>
     );
 }
