@@ -72,26 +72,43 @@ export default function Header() {
           <input
             type="search"
             placeholder="Search..."
-            className="w-full border border-gray-300 rounded-lg pl-10 pr-3 py-2 text-sm focus:outline-none focus:ring-1 focus:ring-red-500"
+            className="w-full border border-gray-300 rounded-full shadow-md shadow-gray-200 pl-10 pr-3 py-2 text-sm outline-none"
           />
         </div>
 
         <div className="w-full overflow-x-auto scrollbar-hide">
-          <div className="flex items-center justify-center gap-6 px-4 min-w-max">
+          <div className="flex items-center justify-center gap-3 px-4 min-w-max my-4">
             {navLinks.map((link, idx) => {
               const Icon = link.icon;
+
               return (
                 <NavLink
                   key={idx}
                   to={link.to}
                   className={({ isActive }) =>
-                    `flex flex-col items-center py-3 border-b-2 ${isActive ? "border-red-500" : "border-transparent"
-                    }`
+                    `
+            group flex items-center gap-2
+            px-4 py-2.5 rounded-full
+            border transition-all duration-300
+            whitespace-nowrap
+
+            ${isActive
+                      ? "bg-(--primary-color) text-white border-transparent shadow-lg shadow-gray-200 scale-100 duration-300"
+                      : "bg-white text-gray-700 border-gray-200 shadow-md shadow-gray-200"
+                    }
+          `
                   }
                 >
-                  {/* Render icon only if it exists */}
-                  {Icon && <Icon className="w-5 h-5" />}
-                  <span className="text-xs mt-1 whitespace-nowrap">
+                  {Icon && (
+                    <Icon
+                      className={`
+                w-4 h-4 transition-all duration-300
+                group-hover:scale-110
+              `}
+                    />
+                  )}
+
+                  <span className="text-sm font-medium">
                     {link.label}
                   </span>
                 </NavLink>

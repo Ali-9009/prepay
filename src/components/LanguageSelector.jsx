@@ -17,7 +17,7 @@ function LanguageSelector() {
             {/* Trigger */}
             <div
                 onClick={() => setOpen(!open)}
-                className="flex items-center gap-1 cursor-pointer">
+                className="flex items-center gap-1 cursor-pointer bg-white p-1 shadow-md shadow-gray-200 border-2 border-red-600 rounded-full">
                 <img src={current.flag} className="w-6 h-6 rounded-full" />
                 <span className="text-xs"><ChevronDown size={18} /></span>
             </div>

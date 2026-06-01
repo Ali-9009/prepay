@@ -1,11 +1,17 @@
 import {
   Smartphone,
   ShoppingBag,
-  Tv,
   Gamepad2,
-  CreditCard,
   ChevronLeft,
   ChevronRight,
+  Clapperboard,
+  Utensils,
+  Plane,
+  Zap,
+  Globe,
+  ArrowRight,
+  Sparkles,
+  Star,
 } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
@@ -14,107 +20,135 @@ import "swiper/css/navigation";
 import { usCarriers } from "../data/carriers";
 import { Link } from "react-router-dom";
 import Button from "../components/Gbtn";
-import { Clapperboard, Utensils, Plane } from "lucide-react";
 
 const categories = [
-  { name: "Mobile", icon: Smartphone },
-  { name: "Streaming", icon: Clapperboard },
-  { name: "Gaming", icon: Gamepad2 },
-  { name: "Shopping", icon: ShoppingBag },
-  { name: "Food", icon: Utensils },
-  { name: "Travel", icon: Plane },
+  { name: "Mobile", icon: Smartphone, color: "bg-rose-50 text-rose-500" },
+  { name: "Streaming", icon: Clapperboard, color: "bg-purple-50 text-purple-500" },
+  { name: "Gaming", icon: Gamepad2, color: "bg-blue-50 text-blue-500" },
+  { name: "Shopping", icon: ShoppingBag, color: "bg-amber-50 text-amber-500" },
+  { name: "Food", icon: Utensils, color: "bg-green-50 text-green-500" },
+  { name: "Travel", icon: Plane, color: "bg-sky-50 text-sky-500" },
 ];
+
+const streamingApps = [
+  { name: "Hulu", img: "/icons/hulu.webp" },
+  { name: "HBO", img: "/icons/hbo.webp" },
+  { name: "Disney", img: "/icons/disney.webp" },
+  { name: "Spotify", img: "/icons/spotify.webp" },
+  { name: "YouTube", img: "/icons/youtube.webp" },
+  { name: "Prime", img: "/icons/prime.webp" },
+];
+
+const gameCards = [
+  { name: "PS", img: "/icons/ps5.webp" },
+  { name: "Xbox", img: "/icons/xbox.webp" },
+  { name: "Nintendo", img: "/icons/nintendo.webp" },
+  { name: "Roblox", img: "/icons/roblox.webp" },
+  { name: "Steam", img: "/icons/steam.webp" },
+  { name: "Google", img: "/icons/google.webp" },
+];
+
+const paymentCards = [
+  { name: "Visa", img: "/icons/visa.webp" },
+  { name: "Mastercard", img: "/icons/mastercard.webp" },
+  { name: "PayPal", img: "/icons/paypal.webp" },
+  { name: "Apple Pay", img: "/icons/applepay.webp" },
+  { name: "Amex", img: "/icons/amex.webp" },
+  { name: "Gift Cards", img: "/icons/google.webp" },
+];
+
+const trendingGifts = [
+  { name: "Target", img: "/icons/target.webp" },
+  { name: "Walmart", img: "/icons/walmart.webp" },
+  { name: "Netflix", img: "/icons/netflix.webp" },
+  { name: "Uber", img: "/icons/uber.webp" },
+  { name: "Starbucks", img: "/icons/starbucks.webp" },
+  { name: "DoorDash", img: "/icons/doordash.webp" },
+];
+
+function SectionCard({ title, children }) {
+  return (
+    <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
+      <div className="flex items-center justify-between mb-4">
+        <h3 className="font-semibold text-gray-800 text-sm">{title}</h3>
+        <button className="text-xs font-medium text-(--primary-color) hover:underline flex items-center gap-1 group">
+          View All
+          <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
+        </button>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function IconGrid({ items, renderItem }) {
+  return (
+    <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+      {items.map((item) => renderItem(item))}
+    </div>
+  );
+}
 
 export default function Hero() {
   return (
-    <div className="p-4 rounded-[28px] w-full max-w-7xl mx-auto">
-      {/* Top */}
-      <div className="bg-linear-to-r from-[#f16b6b] to-[#f7f7ff] rounded-xl p-5">
-        <div className="flex flex-col lg:flex-row items-center justify-between gap-6">
-          {/* Left */}
-          <div className="w-full text-white lg:w-auto text-center lg:text-left">
-            <h1 className="font-bold text-2xl leading-tight">
-              Stay Connected
-              <br />
-              Anywhere with eSIM.
+    <div className="px-4 py-6 w-full max-w-7xl mx-auto space-y-5">
+
+      {/* ── HERO BANNER ── */}
+      <div className="relative overflow-visible rounded-3xl bg-linear-to-br from-[#f16b6b] via-[#f88a6a] to-[#fdc97e] p-6 md:p-10 lg:mt-12">
+        <div className="relative flex flex-col lg:flex-row items-center gap-8">
+
+          {/* Left copy */}
+          <div className="flex-1 text-white text-center lg:text-left">
+            <h1 className="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">
+              Stay Connected <br />
+              <span className="text-white/80">Anywhere with</span> eSIM.
             </h1>
 
-            <p className="text-xs mt-2">
-              Instant activation. Global coverage.
+            <p className="text-sm text-white/70 mt-2 mb-5">
+              Scan. Activate. Go no physical SIM needed.
             </p>
 
-            <Button to="/ActivationFlow" text="Get Started" className="mt-4" />
-          </div>
-
-          {/* Center */}
-          <div className="flex-1 w-full max-w-4xl">
-            <div className="flex items-center gap-2">
-              <input
-                placeholder="Check Your Device Compatibility..."
-                className="flex-1 h-12 rounded-full px-5 text-sm bg-white border border-gray-200 outline-none"
-              />
-
-              <Button className="rounded-full!" text="Check" />
-            </div>
-            {/* <input
-              placeholder="Check Your Device Compatibility..."
-              className="w-full h-12 rounded-full px-5 text-sm bg-white border border-gray-200 outline-none"
+            <Button
+              to="/ActivationFlow"
+              text="Get Started"
+              className="shadow-lg shadow-black/20"
             />
-            <Button text="check"/> */}
-
-            {/* <div className="flex items-center justify-center gap-2 mt-4 flex-wrap lg:flex-nowrap">
-              {[
-                "All",
-                "Mobile Top-up",
-                "Shopping",
-                "Entertainment",
-                "Gaming",
-                "Payment Cards",
-              ].map((item) => (
-                <button
-                  key={item}
-                  className={`flex items-center gap-2 px-4 py-2 rounded-full text-xs font-medium whitespace-nowrap ${
-                    item === "All"
-                      ? "bg-(--primary-color) text-white"
-                      : "bg-white text-gray-700"
-                  }`}
-                >
-                  {item === "Mobile Top-up" && <Smartphone size={14} />}
-                  {item === "Shopping" && <ShoppingBag size={14} />}
-                  {item === "Entertainment" && <Tv size={14} />}
-                  {item === "Gaming" && <Gamepad2 size={14} />}
-                  {item === "Payment Cards" && <CreditCard size={14} />}
-                  {item}
-                </button>
-              ))}
-            </div> */}
-          </div>
-
-          {/* Right */}
-          <div className="shrink-0">
-            <img src="/images/banner.png" alt="" className="w-50 h-auto" />
           </div>
         </div>
+
+        {/* Character */}
+        <img
+          src="/images/hero-img.png"
+          alt="eSIM banner"
+          className="
+      hidden lg:block
+      absolute
+      right-10
+      bottom-0
+      w-50
+      drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)]
+    "
+        />
       </div>
 
-      {/* Brands */}
-      <div className="grid grid-cols-1 lg:grid-cols-10 gap-4 mt-4">
-        <div className="lg:col-span-7">
+      {/* ── BRANDS + PROMO ── */}
+      <div className="grid grid-cols-1 lg:grid-cols-10 gap-4">
+
+        {/* Brands slider */}
+        <div className="lg:col-span-7 bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold">Top Brands</h2>
-
-            <div className="flex items-center gap-4">
-              <button className="text-sm font-medium text-primary hover:underline">
+            <h2 className="font-semibold text-gray-800">Top Brands</h2>
+            <div className="flex items-center gap-3">
+              <button className="text-sm font-medium text-(--primary-color) hover:underline flex items-center gap-1 group">
                 View All
+                <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
               </button>
-
-              <div className="flex items-center gap-2">
-                <button className="brands-prev w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
-                  <ChevronLeft size={16} />
+              <div className="flex items-center gap-1.5">
+                <button className="brands-prev w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition">
+                  <ChevronLeft size={15} />
                 </button>
-
-                <button className="brands-next w-8 h-8 rounded-full border border-gray-300 flex items-center justify-center hover:bg-gray-50">
-                  <ChevronRight size={16} />
+                <button className="brands-next w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition">
+                  <ChevronRight size={15} />
                 </button>
               </div>
             </div>
@@ -122,10 +156,7 @@ export default function Hero() {
 
           <Swiper
             modules={[Navigation]}
-            navigation={{
-              prevEl: ".brands-prev",
-              nextEl: ".brands-next",
-            }}
+            navigation={{ prevEl: ".brands-prev", nextEl: ".brands-next" }}
             spaceBetween={12}
             slidesPerView={2}
             breakpoints={{
@@ -136,20 +167,16 @@ export default function Hero() {
           >
             {usCarriers.map((carrier) => (
               <SwiperSlide key={carrier.name}>
-                <div className="flex flex-col items-center border border-gray-300 p-2 rounded">
+                <div className="flex flex-col items-center border border-gray-100 rounded-xl p-3 hover:border-[var(--primary-color)]/30 hover:shadow-md transition-all duration-200 group cursor-pointer">
                   <Link to={carrier.link} state={{ carrier }}>
                     <img
                       src={carrier.logo}
                       alt={carrier.name}
-                      className="w-40 hover:scale-105 transition"
+                      className="w-full max-w-[120px] h-auto object-contain group-hover:scale-105 transition-transform duration-200"
                     />
                   </Link>
-
                   <Link to={carrier.link} state={{ carrier }}>
-                    <Button
-                      text="Shop Now"
-                      className="mt-2"
-                    />
+                    <Button text="Shop Now" className="mt-2 py-1.5! text-xs!" />
                   </Link>
                 </div>
               </SwiperSlide>
@@ -157,203 +184,99 @@ export default function Hero() {
           </Swiper>
         </div>
 
-        <div className="lg:col-span-3">
-          <div className="relative h-full overflow-hidden rounded-2xl bg-(--primary-color) p-6 text-white flex flex-col justify-center">
-
-            <div className="relative z-10 max-w-sm">
-              <h3 className="text-xl font-bold leading-tight">
-                Get Connected in Minutes
-              </h3>
-
-              <p className="mt-2 text-sm text-white/80">
-                Activate your eSIM instantly and enjoy data.
-              </p>
-
-              <div className="mt-2 flex items-center gap-3">
-                <Button
-                  text="Activate Now"
-                  className="hover:bg-black!"
-                  to="/ActivationFlow"
-                />
-              </div>
-            </div>
-          </div>
+        {/* Promo CTA */}
+        <div className="lg:col-span-3 rounded-xl shadow-md border border-gray-200">
+          <img src="images/hero-banner.png" alt="" />
         </div>
       </div>
 
-      {/* Lower Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        <div className="bg-(--primary-color) text-white rounded-xl p-6 flex flex-col justify-between">
-          <div>
-            <h2 className="text-xl font-bold">Gift Cards Made Easy</h2>
+      {/* ── ROW 1 ── Gift Cards · Categories · Streaming ── */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-            <p className="text-sm opacity-80 mt-2">
-              Send the perfect gift in seconds.
-            </p>
-
-            <Button
-              text="Shop Gift Cards"
-              className="hover:bg-black! mt-2"
-              to="/gift-cards"
-            />
-          </div>
+        {/* Gift Cards promo */}
+        <div className="rounded-xl shadow-md border border-gray-200">
+          <img src="images/hero-banner-2.png" alt="" />
         </div>
 
         {/* Popular Categories */}
-        <div className="border border-gray-200 shadow rounded-xl p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold">Popular Categories</h3>
-
-            <button className="text-xs text-primary hover:underline">
-              View All
-            </button>
-          </div>
-
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-            {categories.map((item) => {
-              const Icon = item.icon;
-
-              return (
-                <div key={item.name} className="text-center">
-                  <div className="w-12 h-12 mx-auto rounded-xl bg-red-100 flex items-center justify-center">
-                    <Icon className="w-5 h-5 text-red-500" />
-                  </div>
-
-                  <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+        <SectionCard title="Popular Categories">
+          <div className="grid grid-cols-3 sm:grid-cols-6 gap-3">
+            {categories.map(({ name, icon: Icon, color }) => (
+              <button
+                key={name}
+                className="flex flex-col items-center gap-1.5 group"
+              >
+                <div className={`w-11 h-11 rounded-xl flex items-center justify-center ${color} group-hover:scale-110 transition-transform duration-200`}>
+                  <Icon className="w-5 h-5" />
                 </div>
-              );
-            })}
+                <p className="text-[10px] font-medium text-gray-600 group-hover:text-gray-900 transition-colors">{name}</p>
+              </button>
+            ))}
           </div>
-        </div>
+        </SectionCard>
 
         {/* Streaming */}
-        <div className="border border-gray-200 shadow rounded-xl p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold">Streaming & Entertainment</h3>
-            <button className="text-xs text-primary hover:underline">
-              View All
-            </button>
-          </div>
-
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-            {[
-              { name: "Hulu", img: "/icons/hulu.webp" },
-              { name: "HBO", img: "/icons/hbo.webp" },
-              { name: "Disney", img: "/icons/disney.webp" },
-              { name: "Spotify", img: "/icons/spotify.webp" },
-              { name: "YouTube", img: "/icons/youtube.webp" },
-              { name: "Prime", img: "/icons/prime.webp" },
-            ].map((item) => (
-              <div key={item.name} className="text-center">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-10 h-10 sm:w-12 sm:h-12 mx-auto rounded-xl object-cover"
-                />
-                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+        <SectionCard title="Streaming & Entertainment">
+          <IconGrid
+            items={streamingApps}
+            renderItem={(item) => (
+              <div key={item.name} className="flex flex-col items-center gap-1.5 group cursor-pointer">
+                <div className="w-11 h-11 rounded-xl overflow-hidden bg-gray-50 group-hover:scale-110 transition-transform duration-200 shadow-sm">
+                  <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                </div>
+                <p className="text-[10px] font-medium text-gray-600 group-hover:text-gray-900 transition-colors">{item.name}</p>
               </div>
-            ))}
-          </div>
-        </div>
+            )}
+          />
+        </SectionCard>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-4">
-        {/* Top Game Cards */}
-        <div className="border border-gray-200 shadow rounded-xl p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold ">Top Game Cards</h3>
-            <button className="text-xs text-primary hover:underline">
-              View All
-            </button>
-          </div>
+      {/* ── ROW 2 ── Gaming · Payments · Trending ── */}
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
 
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-            {[
-              { name: "PS", img: "/icons/ps5.webp" },
-              { name: "Xbox", img: "/icons/xbox.webp" },
-              { name: "Nintendo", img: "/icons/nintendo.webp" },
-              { name: "Roblox", img: "/icons/roblox.webp" },
-              { name: "Steam", img: "/icons/steam.webp" },
-              { name: "Google", img: "/icons/google.webp" },
-            ].map((item) => (
-              <div
-                key={item.name}
-                className="text-center flex flex-col items-center"
-              >
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-cover"
-                />
-                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+        <SectionCard title="Top Game Cards">
+          <IconGrid
+            items={gameCards}
+            renderItem={(item) => (
+              <div key={item.name} className="flex flex-col items-center gap-1.5 group cursor-pointer">
+                <div className="w-11 h-11 rounded-xl overflow-hidden bg-gray-50 group-hover:scale-110 transition-transform duration-200 shadow-sm">
+                  <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                </div>
+                <p className="text-[10px] font-medium text-gray-600 group-hover:text-gray-900 transition-colors">{item.name}</p>
               </div>
-            ))}
-          </div>
-        </div>
+            )}
+          />
+        </SectionCard>
 
-        {/* Payments Cards */}
-        <div className="border border-gray-200 shadow rounded-xl p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold">Payments Cards</h3>
-            <button className="text-xs text-primary hover:underline">
-              View All
-            </button>
-          </div>
-
-          <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 gap-3">
-            {[
-              { name: "Visa", img: "/icons/visa.webp" },
-              { name: "Mastercard", img: "/icons/mastercard.webp" },
-              { name: "PayPal", img: "/icons/paypal.webp" },
-              { name: "Apple Pay", img: "/icons/applepay.webp" },
-              { name: "Amex", img: "/icons/amex.webp" },
-              { name: "Gift Cards", img: "/icons/google.webp" },
-            ].map((item) => (
-              <div
-                key={item.name}
-                className="text-center flex flex-col items-center"
-              >
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl object-contain"
-                />
-                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+        <SectionCard title="Payment Cards">
+          <IconGrid
+            items={paymentCards}
+            renderItem={(item) => (
+              <div key={item.name} className="flex flex-col items-center gap-1.5 group cursor-pointer">
+                <div className="w-11 h-11 rounded-xl overflow-hidden bg-gray-50 flex items-center justify-center group-hover:scale-110 transition-transform duration-200 shadow-sm">
+                  <img src={item.img} alt={item.name} className="w-full h-full object-contain p-1" />
+                </div>
+                <p className="text-[10px] font-medium text-gray-600 group-hover:text-gray-900 transition-colors">{item.name}</p>
               </div>
-            ))}
-          </div>
-        </div>
+            )}
+          />
+        </SectionCard>
 
-        {/* Trending Gifts */}
-        <div className="border border-gray-200 shadow rounded-xl p-4">
-          <div className="flex items-center justify-between mb-4">
-            <h3 className="font-semibold">Trending Gifts</h3>
-            <button className="text-xs text-primary hover:underline">
-              View All
-            </button>
-          </div>
-
-          <div className="grid grid-cols-3 sm:grid-cols-4 lg:grid-cols-6 gap-3">
-            {[
-              { name: "Target", img: "/icons/target.webp" },
-              { name: "Walmart", img: "/icons/walmart.webp" },
-              { name: "Netflix", img: "/icons/netflix.webp" },
-              { name: "Uber", img: "/icons/uber.webp" },
-              { name: "Starbucks", img: "/icons/starbucks.webp" },
-              { name: "DoorDash", img: "/icons/doordash.webp" },
-            ].map((item) => (
-              <div key={item.name} className="text-center">
-                <img
-                  src={item.img}
-                  alt={item.name}
-                  className="w-12 h-12 sm:w-12 sm:h-12 mx-auto rounded-xl object-cover"
-                />
-                <p className="text-[10px] sm:text-[11px] mt-1">{item.name}</p>
+        <SectionCard title="Trending Gifts">
+          <IconGrid
+            items={trendingGifts}
+            renderItem={(item) => (
+              <div key={item.name} className="flex flex-col items-center gap-1.5 group cursor-pointer">
+                <div className="w-11 h-11 rounded-xl overflow-hidden bg-gray-50 group-hover:scale-110 transition-transform duration-200 shadow-sm">
+                  <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                </div>
+                <p className="text-[10px] font-medium text-gray-600 group-hover:text-gray-900 transition-colors">{item.name}</p>
               </div>
-            ))}
-          </div>
-        </div>
+            )}
+          />
+        </SectionCard>
       </div>
+
     </div>
   );
 }
