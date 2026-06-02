@@ -9,7 +9,6 @@ import How_its_work from "./pages/How-its-work";
 import StoreLocations from "./pages/StoreLocator";
 import FAQ from "./pages/Faq";
 import Contact from "./pages/Contact";
-import NavPage from "./pages/NavPage";
 import DetailPage from "./pages/DetailPage";
 
 // Lazy-load Policies
@@ -41,16 +40,6 @@ const HelpCenter = lazy(() => import("./pages/dashboard/HelpCenter"));
 const Invoice = lazy(() => import("./pages/dashboard/Invoice"));
 const AddData = lazy(() => import("./pages/dashboard/AddData"));
 
-// Start Activation
-import Purchase from "./pages/StartActivation/Purchase";
-import StepperForm from "./pages/StartActivation/StepperForm";
-
-// Port-In
-import StepperForm2 from "./pages/PortIn/StepperForm2";
-
-// New Sim
-import StepperForm3 from "./pages/NewSim/StepperForm3";
-
 // Other
 import PrepayGift from "./pages/PrepayGift";
 import Unsubscribe from "./pages/Unsubscribe";
@@ -59,24 +48,8 @@ import WhySection from "./components/WhySection";
 
 import PurchasePsim from "./pages/P_sim/PurchasePsim";
 import PSimLayout from "./pages/P_sim/PSimLayout";
-// import Step1 from "./pages/P_sim/Step1";
-// import Step2 from "./pages/P_sim/Step2";
-// import Step3 from "./pages/P_sim/Step3";
-// import Step4 from "./pages/P_sim/Step4";
-// import Step5 from "./pages/P_sim/Step5";
-// import Step6 from "./pages/P_sim/Step6";
-// import Step7 from "./pages/P_sim/Step7";
-// import Step8 from "./pages/P_sim/Step8";
-
 
 import PurchaseEsim from "./pages/E_sim/PurchaseEsim";
-// import EStep1 from "./pages/E_sim/EStep1";
-// import EStep2 from "./pages/E_sim/EStep2";
-// import EStep3 from "./pages/E_sim/EStep3";
-// import EStep4 from "./pages/E_sim/EStep4";
-// import EStep5 from "./pages/E_sim/EStep5";
-// import EStep6 from "./pages/E_sim/EStep6";
-// import EStep6_1 from "./pages/E_sim/EStep6_1";
 import ESimLayout from "./pages/E_sim/ESimLayout";
 import PurchasePort from "./pages/Port_In/PurchasePort";
 import PortInLayout from "./pages/Port_In/PortInLayout";
@@ -147,15 +120,6 @@ const router = createBrowserRouter([
       },
       { path: "/newSimCard", element: <NewSimCard /> },
       { path: "/viewreceipt", element: <ActivationReceipt /> },
-      // Start Activation
-      { path: "/startactivation/purchase", element: <Purchase /> },
-      { path: "/startactivation/stepperform", element: <StepperForm /> },
-
-      // Port-In
-      { path: "/PortIn/Stepperform2", element: <StepperForm2 /> },
-
-      // New Sim
-      { path: "/NewSim/Stepperform3", element: <StepperForm3 /> },
 
       // Other
       { path: "/PrepayGift", element: <PrepayGift /> },
@@ -166,26 +130,11 @@ const router = createBrowserRouter([
       // P_Sim
       { path: "/purchasePsim", element: <PurchasePsim /> },
       { path: "/psimLayout", element: <PSimLayout /> },
-      // { path: "/step1", element: <Step1 /> },
-      // { path: "/step2", element: <Step2 /> },
-      // { path: "/step3", element: <Step3 /> },
-      // { path: "/step4", element: <Step4 /> },
-      // { path: "/step5", element: <Step5 /> },
-      // { path: "/step6", element: <Step6 /> },
-      // { path: "/step7", element: <Step7 /> },
-      // { path: "/step8", element: <Step8 /> },
 
 
       // E_Sim
       { path: "/purchaseEsim", element: <PurchaseEsim /> },
       { path: "/eSimLayout", element: <ESimLayout /> },
-      // { path: "/eSim/step1", element: <EStep1 /> },
-      // { path: "/eSim/step2", element: <EStep2 /> },
-      // { path: "/eSim/step3", element: <EStep3 /> },
-      // { path: "/eSim/step4", element: <EStep4 /> },
-      // { path: "/eSim/step5", element: <EStep5 /> },
-      // { path: "/eSim/step6", element: <EStep6 /> },
-      // { path: "/eSim/step6_1", element: <EStep6_1 /> },
 
 
       // Port_In

@@ -3,35 +3,77 @@ import {
   Smartphone,
   Mail,
   CardSim,
-  Gamepad2,
-  ShoppingBag,
-  Music,
   CreditCard,
   CircleUserRound,
   Search,
+  Menu,
+  X,
+  FileText,
+  ShieldCheck,
+  ScrollText,
 } from "lucide-react";
-import { useState } from "react";
+import {
+  LockKeyhole,
+  FileSignature,
+  WalletCards,
+  Copyright,
+  BellOff,
+} from "lucide-react";
+import { useEffect, useState } from "react";
 import LanguageSelector from "./LanguageSelector";
 import Button from "./Gbtn";
 
 const navLinks = [
   { label: "Mobile Topup", to: "/TopUpMobile", icon: Smartphone },
-  // { label: "eSim Activation", to: "/TwoStepForm", icon: CardSim },
   { label: "eSim Activation", to: "/ActivationFlow", icon: CardSim },
-  // { label: "Shopping", to: "/shopping", icon: ShoppingBag },
-  // { label: "Entertainment", to: "/entertainment", icon: Music },
-  // { label: "Gaming", to: "/gaming", icon: Gamepad2 },
-  // { label: "Payment Cards", to: "/payment", icon: CreditCard },
   { label: "Virtual Gift Cards", to: "/gift-cards", icon: CreditCard },
+];
+
+const policyLinks = [
+  { label: "Privacy Policy", to: "/PrivacyPolicy", icon: LockKeyhole, },
+  {
+    label: "Terms & Conditions",
+    to: "/TermsConditions",
+    icon: FileSignature,
+  },
+  {
+    label: "Refund Policy",
+    to: "/RefundPolicy",
+    icon: WalletCards,
+  },
+  {
+    label: "DMCA",
+    to: "/DMCA",
+    icon: Copyright,
+  },
+  {
+    label: "Unsubscribe",
+    to: "/Unsubscribe",
+    icon: BellOff,
+  },
 ];
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 20);
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const headerGlass = scrolled
+    ? "bg-white/75 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-white/40"
+    : "bg-[#fcfbfb] border-b border-[#e0e0e0]";
+
   return (
     <>
-      {/* top bar */}
-      <div className="bg-[#111111] text-white  px-10 py-2 text-[13px] font-medium">
-        <div className="flex justify-end items-center gap-7 max-w-7xl mx-auto">
+      {/* Top Bar */}
+      <div className="hidden bg-[#111111] text-white px-4 md:px-10 py-2 text-[13px] font-medium">
+        <div className="flex justify-center md:justify-end items-center gap-5 md:gap-7 max-w-7xl mx-auto">
           <a
             href="tel:7868842070"
             className="flex items-center text-[11px] gap-2 text-white no-underline hover:opacity-75 transition-opacity"
@@ -39,9 +81,10 @@ export default function Header() {
             <Smartphone size={15} />
             (786) 884-2070
           </a>
+
           <a
             href="mailto:Support@helloprepay.com"
-            className="flex items-center gap-2 text-[11px] text-white no-underline hover:opacity-75 transition-opacity"
+            className="hidden sm:flex items-center gap-2 text-[11px] text-white no-underline hover:opacity-75 transition-opacity"
           >
             <Mail size={15} />
             Support@helloprepay.com
@@ -49,35 +92,40 @@ export default function Header() {
         </div>
       </div>
 
-      {/* mobile */}
-      <div className="sticky top-0 bg-white z-8 md:hidden">
-        <div className="px-4 py-2 flex items-center justify-between ">
-          <NavLink to="/" className="shrink-0  ">
-            <img src="/images/logo.png" className="w-25" alt="" />
+      {/* Mobile Header */}
+      <div
+        className={`sticky top-0 z-30 md:hidden transition-all duration-300 ${headerGlass}`}
+      >
+        <div className="px-4 py-3 flex items-center justify-between">
+          <NavLink to="/" className="shrink-0">
+            <img src="/images/logo.png" className="w-25" alt="logo" />
           </NavLink>
-          <div className="flex items-center justify-center gap-4">
+
+          <div className="flex items-center justify-center gap-3">
             <LanguageSelector />
-            <Link to="/SignIn">
-              <CircleUserRound size={30} />
-            </Link>
+
+            <button
+              onClick={() => setOpen(true)}
+              className="w-10 h-10 rounded-full bg-white/80 border border-gray-200 shadow-sm flex items-center justify-center"
+              aria-label="Open menu"
+            >
+              <Menu size={22} />
+            </button>
           </div>
         </div>
 
-        <div className="relative px-4 py-2 w-full">
-          <Search
-            className="absolute left-6 top-1/2 -translate-y-1/2 text-gray-400"
-            size={18}
-          />
+        <div className="relative px-4 pb-3 w-full">
+          
 
           <input
             type="search"
             placeholder="Search..."
-            className="w-full border border-gray-300 rounded-full shadow-md shadow-gray-200 pl-10 pr-3 py-2 text-sm outline-none"
+            className="w-full bg-white/85 backdrop-blur-md border border-gray-200 rounded-full shadow-md shadow-gray-200/70 pl-4 pr-3 py-2 text-sm outline-none focus:border-(--primary-color)"
           />
         </div>
 
         <div className="w-full overflow-x-auto scrollbar-hide">
-          <div className="flex items-center justify-center gap-3 px-4 min-w-max my-4">
+          <div className="flex items-center gap-3 px-4 min-w-max pb-4">
             {navLinks.map((link, idx) => {
               const Icon = link.icon;
 
@@ -86,31 +134,14 @@ export default function Header() {
                   key={idx}
                   to={link.to}
                   className={({ isActive }) =>
-                    `
-            group flex items-center gap-2
-            px-4 py-2.5 rounded-full
-            border transition-all duration-300
-            whitespace-nowrap
-
-            ${isActive
-                      ? "bg-(--primary-color) text-white border-transparent shadow-lg shadow-gray-200 scale-100 duration-300"
-                      : "bg-white text-gray-700 border-gray-200 shadow-md shadow-gray-200"
-                    }
-          `
+                    `group flex items-center gap-2 px-4 py-2.5 rounded-full border transition-all duration-300 whitespace-nowrap ${isActive
+                      ? "bg-(--primary-color) text-white border-transparent shadow-lg shadow-gray-200"
+                      : "bg-white/90 text-gray-700 border-gray-200 shadow-md shadow-gray-200 hover:border-(--primary-color)"
+                    }`
                   }
                 >
-                  {Icon && (
-                    <Icon
-                      className={`
-                w-4 h-4 transition-all duration-300
-                group-hover:scale-110
-              `}
-                    />
-                  )}
-
-                  <span className="text-sm font-medium">
-                    {link.label}
-                  </span>
+                  <Icon className="w-4 h-4 transition-transform duration-300 group-hover:scale-110" />
+                  <span className="text-sm font-medium">{link.label}</span>
                 </NavLink>
               );
             })}
@@ -118,26 +149,23 @@ export default function Header() {
         </div>
       </div>
 
-      {/* desktop */}
-      <div className="sticky top-0 z-10 bg-[#fcfbfb] border-b border-[#e0e0e0] hidden lg:block">
+      {/* Desktop Header */}
+      <div
+        className={`sticky top-0 z-30 hidden lg:block transition-all duration-300 ${headerGlass}`}
+      >
         <nav className="flex items-center justify-between px-6 h-16 max-w-7xl mx-auto">
-
-          {/* Logo */}
           <NavLink to="/" className="shrink-0">
             <img src="/images/logo.png" className="w-28" alt="logo" />
           </NavLink>
 
-          {/* Right Side */}
           <div className="flex items-center gap-8">
-
-            {/* Menu */}
             <div className="flex items-center gap-6">
               {navLinks.map((link, idx) => (
                 <NavLink
                   key={idx}
                   to={link.to}
                   className={({ isActive }) =>
-                    `text-sm font-semibold ${isActive
+                    `text-sm font-semibold transition-colors ${isActive
                       ? "text-(--primary-color)"
                       : "text-gray-700 hover:text-(--primary-color)"
                     }`
@@ -148,75 +176,107 @@ export default function Header() {
               ))}
             </div>
 
-            {/* Actions */}
             <div className="flex items-center gap-4">
-
               <LanguageSelector />
+              {/* <Button to="SignIn" text="Login Here" /> */}
 
-              <div className="hidden md:flex items-center gap-3">
-                <Button to="SignIn" text="Login Here" />
-              </div>
+              <button
+                onClick={() => setOpen(true)}
+                className="w-10 h-10 rounded-full bg-white/80 border-2 border-red-600 shadow-sm flex items-center justify-center hover:shadow-md transition-all"
+                aria-label="Open policies menu"
+              >
+                <Menu size={22} />
+              </button>
             </div>
-
           </div>
         </nav>
       </div>
 
-      {/* tab */}
-      <div className="hidden md:flex lg:hidden items-center justify-between px-4 h-14 bg-[#fcfbfb] border-b border-[#e0e0e0]">
+      {/* Tablet Header */}
+      <div
+        className={`sticky top-0 z-30 hidden md:flex lg:hidden items-center justify-between px-4 h-14 transition-all duration-300 ${headerGlass}`}
+      >
+        <NavLink to="/">
+          <img src="/images/logo.png" className="w-24" alt="logo" />
+        </NavLink>
 
-        {/* Logo */}
-        <img src="/images/logo.png" className="w-24" />
+        <div className="flex items-center gap-3">
+          <LanguageSelector />
 
-        {/* Hamburger */}
-        <button onClick={() => setOpen(true)} className="text-2xl">
-          ☰
-        </button>
+          <button
+            onClick={() => setOpen(true)}
+            className="w-10 h-10 rounded-full bg-white/80 border border-gray-200 shadow-sm flex items-center justify-center"
+            aria-label="Open menu"
+          >
+            <Menu size={22} />
+          </button>
+        </div>
       </div>
 
-      {/* sidebar */}
+      {/* Overlay */}
       <div
-        className={`fixed top-0 right-0 h-full w-64 bg-white shadow-lg transform transition-transform duration-300 z-50
-        ${open ? "translate-x-0" : "translate-x-full"}`}
+        onClick={() => setOpen(false)}
+        className={`fixed inset-0 bg-black/40 backdrop-blur-sm z-40 transition-opacity duration-300 ${open ? "opacity-100 visible" : "opacity-0 invisible"
+          }`}
+      />
+
+      {/* Hamburger Sidebar - Policies Only + Login */}
+      <aside
+        className={`fixed top-0 right-0 h-full w-[82%] max-w-[330px] bg-white/85 backdrop-blur-2xl shadow-2xl shadow-black/20 border-l border-white/50 transform transition-transform duration-300 z-50 ${open ? "translate-x-0" : "translate-x-full"
+          }`}
       >
-        {/* Close */}
-        <div className="flex justify-end p-4">
-          <button onClick={() => setOpen(false)}>✕</button>
+        <div className="flex items-center justify-between px-5 py-5 border-b border-gray-200/70">
+          <img src="/images/logo.png" className="w-24" alt="logo" />
+
+          <button
+            onClick={() => setOpen(false)}
+            className="w-9 h-9 rounded-full bg-gray-100 flex items-center justify-center hover:bg-gray-200 transition"
+            aria-label="Close menu"
+          >
+            <X size={20} />
+          </button>
         </div>
 
-        {/* Links */}
-        <div className="flex flex-col gap-4 px-6">
-          {navLinks.map((link, idx) => (
-            <NavLink
-              key={idx}
-              to={link.to}
-              onClick={() => setOpen(false)}
-              className="text-gray-700 text-base font-medium"
-            >
-              {link.label}
-            </NavLink>
-          ))}
+        <div className="px-5 py-6">
+          <p className="text-xs uppercase tracking-wider text-gray-400 font-bold mb-4">
+            Policies
+          </p>
 
-          <div className="hidden md:flex items-center gap-3">
-            <NavLink
-              to="/SignIn"
-              className="bg-[#111] text-white rounded-full px-4 py-2 text-sm hover:bg-[#333]"
-            >
-              Login Here
-            </NavLink>
+          <div className="flex flex-col gap-3">
+            {policyLinks.map((link, idx) => {
+              const Icon = link.icon;
 
-            <LanguageSelector />
+              return (
+                <NavLink
+                  key={idx}
+                  to={link.to}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `flex items-center gap-3 px-4 py-3 rounded-2xl text-sm font-semibold transition-all ${isActive
+                      ? "bg-(--primary-color) text-white shadow-lg shadow-gray-300"
+                      : "bg-white/80 text-gray-700 border border-gray-100 hover:border-(--primary-color) hover:text-(--primary-color)"
+                    }`
+                  }
+                >
+                  <Icon size={18} />
+                  {link.label}
+                </NavLink>
+              );
+            })}
           </div>
 
+          <div className="mt-7 pt-6 border-t border-gray-200/70">
+            <Link
+              to="/SignIn"
+              onClick={() => setOpen(false)}
+              className="flex items-center justify-center gap-2 w-full bg-[#111] text-white rounded-full px-5 py-3 text-sm font-semibold hover:bg-[#333] transition"
+            >
+              <CircleUserRound size={20} />
+              Login Here
+            </Link>
+          </div>
         </div>
-      </div>
-
-      {open && (
-        <div
-          onClick={() => setOpen(false)}
-          className="fixed inset-0 bg-black/40 z-40"
-        />
-      )}
+      </aside>
     </>
   );
 }

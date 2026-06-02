@@ -128,14 +128,9 @@ export default function TopUpLayout({
             </div>
 
             <h2 className="text-lg font-semibold text-gray-900">
-              Top up for popular carriers
+              Refill
             </h2>
           </div>
-
-          <button className="flex items-center gap-1 px-4 py-2 border border-gray-200 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 transition">
-            View all carriers
-            <ChevronRight className="w-4 h-4" />
-          </button>
         </div>
 
         {/* Carriers Grid */}

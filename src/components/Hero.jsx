@@ -13,10 +13,11 @@ import {
   Sparkles,
   Star,
 } from "lucide-react";
+import { Navigation, Grid } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
+import "swiper/css/grid";
 import { usCarriers } from "../data/carriers";
 import { Link } from "react-router-dom";
 import Button from "../components/Gbtn";
@@ -71,10 +72,16 @@ function SectionCard({ title, children }) {
     <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm hover:shadow-md transition-shadow duration-300">
       <div className="flex items-center justify-between mb-4">
         <h3 className="font-semibold text-gray-800 text-sm">{title}</h3>
-        <button className="text-xs font-medium text-(--primary-color) hover:underline flex items-center gap-1 group">
+        <Link
+          to="/gift-cards"
+          className="text-xs font-medium text-(--primary-color) hover:underline flex items-center gap-1 group"
+        >
           View All
-          <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform" />
-        </button>
+          <ArrowRight
+            size={12}
+            className="group-hover:translate-x-0.5 transition-transform"
+          />
+        </Link>
       </div>
       {children}
     </div>
@@ -94,11 +101,10 @@ export default function Hero() {
     <div className="px-4 py-6 w-full max-w-7xl mx-auto space-y-5">
 
       {/* ── HERO BANNER ── */}
-      <div className="relative overflow-visible rounded-3xl bg-linear-to-br from-[#f16b6b] via-[#f88a6a] to-[#fdc97e] p-6 md:p-10 lg:mt-12">
-        <div className="relative flex flex-col lg:flex-row items-center gap-8">
-
+      <div className="rounded-3xl bg-linear-to-br from-[#f16b6b] via-[#f88a6a] to-[#fdc97e] p-6 md:p-10 lg:mt-12">
+        <div className="grid grid-cols-1 lg:grid-cols-2 items-center gap-8">
           {/* Left copy */}
-          <div className="flex-1 text-white text-center lg:text-left">
+          <div className="text-white text-center lg:text-left">
             <h1 className="text-3xl md:text-4xl font-extrabold leading-tight tracking-tight">
               Stay Connected <br />
               <span className="text-white/80">Anywhere with</span> eSIM.
@@ -114,35 +120,39 @@ export default function Hero() {
               className="shadow-lg shadow-black/20"
             />
           </div>
-        </div>
 
-        {/* Character */}
-        <img
-          src="/images/hero-img.png"
-          alt="eSIM banner"
-          className="
-      hidden lg:block
-      absolute
-      right-10
-      bottom-0
-      w-50
-      drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)]
-    "
-        />
+          {/* Right image */}
+          <div className="flex justify-center lg:justify-end">
+            <img
+              src="/images/hero-banner.png"
+              alt="eSIM banner"
+              className="
+          drop-shadow-[0_20px_30px_rgba(0,0,0,0.25)]
+        "
+            />
+          </div>
+
+        </div>
       </div>
 
       {/* ── BRANDS + PROMO ── */}
-      <div className="grid grid-cols-1 lg:grid-cols-10 gap-4">
+      <div className="">
 
         {/* Brands slider */}
-        <div className="lg:col-span-7 bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
+        <div className="bg-white border border-gray-100 rounded-2xl p-5 shadow-sm">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold text-gray-800">Top Brands</h2>
+            <h2 className="font-semibold text-gray-800">Refill</h2>
             <div className="flex items-center gap-3">
-              <button className="text-sm font-medium text-(--primary-color) hover:underline flex items-center gap-1 group">
+              <Link
+                to="/TopUpMobile"
+                className="text-xs font-medium text-(--primary-color) hover:underline flex items-center gap-1 group"
+              >
                 View All
-                <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
-              </button>
+                <ArrowRight
+                  size={12}
+                  className="group-hover:translate-x-0.5 transition-transform"
+                />
+              </Link>
               <div className="flex items-center gap-1.5">
                 <button className="brands-prev w-8 h-8 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50 hover:border-gray-300 transition">
                   <ChevronLeft size={15} />
@@ -155,14 +165,27 @@ export default function Hero() {
           </div>
 
           <Swiper
-            modules={[Navigation]}
+            modules={[Navigation, Grid]}
             navigation={{ prevEl: ".brands-prev", nextEl: ".brands-next" }}
             spaceBetween={12}
+            grid={{
+              rows: 2,
+              fill: "row",
+            }}
             slidesPerView={2}
             breakpoints={{
-              640: { slidesPerView: 3 },
-              768: { slidesPerView: 4 },
-              1024: { slidesPerView: 5 },
+              640: {
+                slidesPerView: 3,
+                grid: { rows: 1 }, // disable grid on tablet+
+              },
+              768: {
+                slidesPerView: 4,
+                grid: { rows: 1 },
+              },
+              1024: {
+                slidesPerView: 8,
+                grid: { rows: 1 },
+              },
             }}
           >
             {usCarriers.map((carrier) => (
@@ -176,17 +199,12 @@ export default function Hero() {
                     />
                   </Link>
                   <Link to={carrier.link} state={{ carrier }}>
-                    <Button text="Shop Now" className="mt-2 py-1.5! text-xs!" />
+                    <Button text="Refill Now" className="mt-2 py-1.5! text-xs!" />
                   </Link>
                 </div>
               </SwiperSlide>
             ))}
           </Swiper>
-        </div>
-
-        {/* Promo CTA */}
-        <div className="lg:col-span-3 rounded-xl shadow-md border border-gray-200">
-          <img src="images/hero-banner.png" alt="" />
         </div>
       </div>
 

@@ -1,5 +1,4 @@
 import { NavLink } from "react-router-dom";
-// import PopularServices from "../components/PopularServices";
 import Button from "../components/Gbtn";
 import WhySection from "../components/WhySection";
 import Steps from "../components/Steps";
@@ -72,8 +71,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* <PopularServices /> */}
-
       <section className="py-12 px-6 md:px-8">
         <div className="text-center mb-10">
           <h2 className="secondary-heading">
@@ -94,10 +91,10 @@ export default function Home() {
               <h3 className="text-[15px] font-semibold  text-[#111] mb-2 mt-4">
                 {card.title}
               </h3>
-              <p className="text-[13px] text-[#666] leading-relaxed mb-5 flex-1">
+              <p className="text-[13px] text-[#666] leading-relaxed flex-1">
                 {card.desc}
               </p>
-              <Button to={card.to} text={card.btn} />
+              {/* <Button to={card.to} text={card.btn} /> */}
             </div>
           ))}
         </div>
