@@ -69,6 +69,18 @@ export default function Header() {
     ? "bg-white/75 backdrop-blur-xl shadow-lg shadow-black/5 border-b border-white/40"
     : "bg-[#fcfbfb] border-b border-[#e0e0e0]";
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [open]);
+
   return (
     <>
       {/* Top Bar */}
@@ -115,7 +127,7 @@ export default function Header() {
         </div>
 
         <div className="relative px-4 pb-3 w-full">
-          
+
 
           <input
             type="search"

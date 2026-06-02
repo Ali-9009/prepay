@@ -19,7 +19,7 @@ export default function ActivateStep() {
     <section className="py-12">
       <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-[40%_60%] gap-10 items-start">
         {/* LEFT CARD */}
-        <div className="sticky top-20 border p-4 border-gray-300 shadow-lg rounded-xl">
+        <div className="lg:sticky top-20 border p-4 border-gray-300 shadow-lg rounded-xl">
           <img src={carrier?.logo} alt={carrier?.name} className="w-130" />
         </div>
 

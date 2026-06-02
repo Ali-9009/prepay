@@ -57,9 +57,9 @@ export default function GiftCards() {
 
     return (
         <>
-            <div className="w-full bg-white  px-4 lg:px-8 pt-16 pb-10">
+            <div className="w-full bg-white px-4 lg:px-8 pt-16 pb-10">
                 {/* HERO */}
-                <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center">
+                <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-10 items-center ">
 
                     <div>
                         <div className="inline-flex items-center gap-2 bg-pink-50 text-pink-600 px-3 py-1 rounded-full text-sm font-medium">
@@ -148,8 +148,6 @@ export default function GiftCards() {
                 </div>
 
                 <PopularServices />
-
-
             </div>
 
             <section className="bg-black text-white py-16 mt-6 px-6">

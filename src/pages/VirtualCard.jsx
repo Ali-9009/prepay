@@ -82,7 +82,7 @@ export default function VirtualCard() {
                                     Select Card Type
                                 </h3>
 
-                                <div className="grid grid-cols-3 gap-3">
+                                <div className="grid md:grid-cols-3 grid-cols-2 gap-3">
 
                                     {cardTypes.map((card) => (
                                         <button
@@ -104,7 +104,7 @@ export default function VirtualCard() {
                                                 </div>
                                             )}
 
-                                            <h4 className="text-sm font-semibold leading-5">
+                                            <h4 className="text-xs font-semibold leading-5">
                                                 {card.title}
                                             </h4>
 
@@ -122,7 +122,7 @@ export default function VirtualCard() {
                                     Spending Rule
                                 </h3>
 
-                                <div className="flex flex-wrap gap-3">
+                                <div className="grid md:grid-cols-4 grid-cols-3 gap-3">
                                     {spendingRules.map((rule) => (
                                         <button
                                             key={rule}

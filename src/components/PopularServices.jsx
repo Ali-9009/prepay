@@ -67,7 +67,7 @@ export default function PopularServices() {
             : allData[activeFilter] || [];
 
     return (
-        <section className="pt-12 px-6 md:px-8">
+        <section className="pt-12 md:px-8">
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
