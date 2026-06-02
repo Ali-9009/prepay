@@ -96,8 +96,11 @@ export default function TopUpLayout({
       </section>
 
       {/* MOBILE */}
-      <div className="max-w-sm mx-auto py-8 block md:hidden">
-        <div className="flex justify-center gap-10">
+      <div className="max-w-sm mx-auto px-4 py-8 block md:hidden">
+
+        <h1 className="text-2xl font-semibold pb-6 text-center">US and international</h1>
+
+        <div className="flex justify-center gap-10 mb-6">
           <div
             onClick={() => navigate("/TopUpMobile")}
             className="cursor-pointer text-center"
